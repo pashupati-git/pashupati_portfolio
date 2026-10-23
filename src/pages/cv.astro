@@ -116,7 +116,7 @@ const hasPdf = fs.existsSync(cvFilePath);
     <!-- Key Projects Highlighted in CV -->
     <Section id="cv-projects" tag="Highlights" heading="Key Projects from CV">
       <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-        {projects.slice(0, 5).map((project, idx) => (
+        {projects.map((project, idx) => (
           <div class="card" data-reveal style={`--i:${Math.min(idx, 4)}`}>
             <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
               <h3 style="font-size: 1.25rem;">{project.name} — <span style="font-size: 1rem; color: var(--text-secondary); font-weight: normal;">{project.headline}</span></h3>

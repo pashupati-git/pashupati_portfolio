@@ -134,80 +134,95 @@ export const APPS: AppScreen[] = [
     },
   },
   {
-    id: 'leafcare',
-    name: 'LeafCare',
-    tagline: 'AI Plant Health Scanner',
-    themeColor: '#2EC4B6',
+    id: 'caro-tv',
+    name: 'Caro TV',
+    tagline: 'Live IPTV & Streaming',
+    themeColor: '#13753D',
     renderScreen: (ctx, w, h) => {
-      ctx.fillStyle = '#081C15';
+      ctx.fillStyle = '#05140B';
       ctx.fillRect(0, 0, w, h);
 
       // Status Bar
-      ctx.fillStyle = '#D8F3DC';
+      ctx.fillStyle = '#86EFAC';
       ctx.font = 'bold 22px sans-serif';
       ctx.fillText('9:41', 36, 44);
-      ctx.fillText('5G  98%', w - 110, 44);
+      ctx.fillText('5G  100%', w - 120, 44);
 
       // Header
-      ctx.fillStyle = '#1B4332';
+      ctx.fillStyle = '#13753D';
       ctx.roundRect(24, 70, w - 48, 64, 16);
       ctx.fill();
-      ctx.fillStyle = '#52B788';
+      ctx.fillStyle = '#FFFFFF';
       ctx.font = 'bold 26px sans-serif';
-      ctx.fillText('🌿 LeafCare AI', 48, 112);
+      ctx.fillText('📺 Caro TV Nepal', 48, 112);
 
-      // Camera Viewfinder Box
-      ctx.fillStyle = '#2D6A4F';
-      ctx.roundRect(24, 150, w - 48, 360, 20);
+      // Live Player Window
+      ctx.fillStyle = '#0F2918';
+      ctx.roundRect(24, 150, w - 48, 280, 20);
       ctx.fill();
 
-      // Scan target box
-      ctx.strokeStyle = '#52B788';
-      ctx.lineWidth = 4;
-      ctx.strokeRect(80, 200, w - 160, 240);
+      // Video preview area
+      const vidGrad = ctx.createLinearGradient(24, 150, w - 24, 430);
+      vidGrad.addColorStop(0, '#1E4A2D');
+      vidGrad.addColorStop(1, '#0A1F12');
+      ctx.fillStyle = vidGrad;
+      ctx.roundRect(36, 162, w - 72, 210, 14);
+      ctx.fill();
 
-      // Live scan beam
-      const scanGrad = ctx.createLinearGradient(0, 290, 0, 350);
-      scanGrad.addColorStop(0, 'rgba(82, 183, 136, 0.4)');
-      scanGrad.addColorStop(1, 'rgba(82, 183, 136, 0)');
-      ctx.fillStyle = scanGrad;
-      ctx.fillRect(82, 290, w - 164, 60);
+      // Live Badge
+      ctx.fillStyle = '#EF4444';
+      ctx.roundRect(50, 178, 70, 28, 14);
+      ctx.fill();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 14px sans-serif';
+      ctx.fillText('● LIVE', 62, 197);
 
-      ctx.fillStyle = '#D8F3DC';
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 22px sans-serif';
+      ctx.fillText('National Broadcast HD', 50, 340);
+      ctx.font = '16px sans-serif';
+      ctx.fillStyle = '#86EFAC';
+      ctx.fillText('HLS Adaptive Stream · 1080p 60fps', 50, 368);
+
+      // Channel Guide EPG
+      ctx.fillStyle = '#0F2918';
+      ctx.roundRect(24, 450, w - 48, 260, 20);
+      ctx.fill();
+
+      ctx.fillStyle = '#FFFFFF';
       ctx.font = 'bold 20px sans-serif';
-      ctx.fillText('Scanning Tomato Leaf...', 140, 410);
+      ctx.fillText('Live Channels EPG', 48, 490);
 
-      // Diagnosis Card
-      ctx.fillStyle = '#1B4332';
-      ctx.roundRect(24, 530, w - 48, 220, 20);
-      ctx.fill();
+      const channels = [
+        { name: 'Nepal Television HD', show: 'Main Evening News' },
+        { name: 'Kantipur TV HD', show: 'Tough Talk Current Affairs' },
+        { name: 'AP1 Television', show: 'Live Sports Broadcast' },
+      ];
 
-      ctx.fillStyle = '#74C69D';
-      ctx.font = 'bold 24px sans-serif';
-      ctx.fillText('Result: Early Blight', 48, 575);
-      ctx.fillStyle = '#D8F3DC';
-      ctx.font = '18px sans-serif';
-      ctx.fillText('Confidence: 96.4% (TFLite CNN)', 48, 610);
-      ctx.fillText('Treatment: Organic Copper Fungicide', 48, 645);
+      channels.forEach((ch, idx) => {
+        const cy = 520 + idx * 58;
+        ctx.fillStyle = idx === 0 ? '#1E4A2D' : '#143821';
+        ctx.roundRect(40, cy, w - 80, 48, 12);
+        ctx.fill();
 
-      // Buy Treatment Action
-      ctx.fillStyle = '#52B788';
-      ctx.roundRect(48, 675, w - 96, 50, 25);
-      ctx.fill();
-      ctx.fillStyle = '#081C15';
-      ctx.font = 'bold 20px sans-serif';
-      ctx.fillText('Shop Recommended Cure', 125, 707);
+        ctx.fillStyle = '#86EFAC';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.fillText(ch.name, 56, cy + 30);
+        ctx.fillStyle = '#E2E8F0';
+        ctx.font = '14px sans-serif';
+        ctx.fillText(ch.show, w - 210, cy + 30);
+      });
 
-      // Bottom Bar
-      ctx.fillStyle = '#081C15';
+      // Bottom Navigation Bar
+      ctx.fillStyle = '#05140B';
       ctx.fillRect(0, h - 80, w, 80);
-      ctx.fillStyle = '#52B788';
+      ctx.fillStyle = '#22C55E';
       ctx.font = 'bold 18px sans-serif';
-      ctx.fillText('Diagnosis', 40, h - 35);
-      ctx.fillStyle = '#74C69D';
-      ctx.fillText('History', 170, h - 35);
-      ctx.fillText('Farm Shop', 280, h - 35);
-      ctx.fillText('Alerts', 410, h - 35);
+      ctx.fillText('Live TV', 45, h - 35);
+      ctx.fillStyle = '#86EFAC';
+      ctx.fillText('Channels', 160, h - 35);
+      ctx.fillText('Guide', 290, h - 35);
+      ctx.fillText('Settings', 395, h - 35);
     },
   },
   {
