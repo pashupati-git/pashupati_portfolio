@@ -7,29 +7,48 @@ interface Props {
 }
 
 const { project, index = 0 } = Astro.props;
+const primaryStack = project.stack.slice(0, 4);
+const remainingStackCount = project.stack.length - 4;
+const primaryBullets = project.bullets.slice(0, 2);
+const moreBullets = project.bullets.slice(2);
+const accent = project.color || '#00e5ff';
 ---
 
-<div class="card project-card" data-reveal style={`--i:${Math.min(index, 4)}`}>
+<div
+  class="card project-card"
+  data-reveal
+  style={`--i:${Math.min(index, 4)}; --project-accent: ${accent};`}
+>
   <div>
-    <div class="project-top">
-      <div class="project-icon-box" style={project.color ? `border-color: ${project.color}40; box-shadow: 0 0 15px ${project.color}20` : ''}>
+    <!-- Header: Icon + Title + Context + Metric Pill -->
+    <div class="project-header">
+      <div class="project-icon-box" style={`--glow-color: ${accent};`}>
         {project.icon ? (
-          <img src={project.icon} alt={project.name} width="52" height="52" loading="lazy" />
+          <img src={project.icon} alt={project.name} width="46" height="46" loading="lazy" />
         ) : (
-          <div style={`width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; color: #fff; background: ${project.color || 'var(--accent-gradient)'}`}>
+          <div class="project-icon-fallback" style={`background: ${accent};`}>
             {project.name.slice(0, 2).toUpperCase()}
           </div>
         )}
       </div>
-      <div style="display: flex; gap: 0.5rem; align-items: center;">
-        {project.installs && <span class="project-badge" style="color: var(--primary);">{project.installs}</span>}
-        <span class="project-badge">{project.category}</span>
+
+      <div class="project-meta">
+        <div class="project-title-row">
+          <h3 class="project-title">{project.name}</h3>
+          {project.installs && (
+            <span class="project-install-pill" style={`--pill-color: ${accent};`}>
+              {project.installs}
+            </span>
+          )}
+        </div>
+        <p class="project-context">{project.context || project.category}</p>
       </div>
     </div>
 
-    <h3 class="project-title">{project.name}</h3>
-    <p class="project-headline">{project.headline}</p>
+    <!-- Concise Headline -->
+    <p class="project-headline" title={project.headline}>{project.headline}</p>
 
+    <!-- App Screenshot Showcase Window -->
     {project.previewScreen && (
       <div
         class="project-preview-wrap"
@@ -41,10 +60,10 @@ const { project, index = 0 } = Astro.props;
         aria-label={`Tap to view full screenshot of ${project.name}`}
       >
         <img src={project.previewScreen} alt={`${project.name} app interface`} class="card-screen-img" loading="lazy" />
-        <span class="preview-badge">Production Flutter UI</span>
+        <span class="preview-badge">Production UI</span>
         <div class="preview-zoom-overlay">
           <span class="preview-zoom-btn">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               <line x1="11" y1="8" x2="11" y2="14"></line>
@@ -56,44 +75,198 @@ const { project, index = 0 } = Astro.props;
       </div>
     )}
 
+    <!-- Compact Tech Stack Tags -->
     <div class="project-stack">
-      {project.stack.map((tech) => (
+      {primaryStack.map((tech) => (
         <span class="tech-tag">{tech}</span>
       ))}
+      {remainingStackCount > 0 && (
+        <span class="tech-tag tech-tag-more" title={`Additional: ${project.stack.slice(4).join(', ')}`}>
+          +{remainingStackCount}
+        </span>
+      )}
     </div>
 
-    <ul class="project-bullets">
-      {project.bullets.map((bullet) => (
-        <li>{bullet}</li>
-      ))}
-    </ul>
+    <!-- Key Highlights (Top 2 + Smooth Expander) -->
+    <div class="project-body">
+      <ul class="project-bullets">
+        {primaryBullets.map((bullet) => (
+          <li>{bullet}</li>
+        ))}
+      </ul>
+
+      {moreBullets.length > 0 && (
+        <details class="project-more-accordion">
+          <summary class="project-more-summary">
+            <span>+{moreBullets.length} more achievements</span>
+            <svg class="summary-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </summary>
+          <ul class="project-bullets extra-bullets">
+            {moreBullets.map((bullet) => (
+              <li>{bullet}</li>
+            ))}
+          </ul>
+          <div class="complete-stack-tray">
+            <span class="tray-label">Full Stack:</span>
+            <div class="tray-tags">
+              {project.stack.map((t) => <span class="tech-tag">{t}</span>)}
+            </div>
+          </div>
+        </details>
+      )}
+    </div>
   </div>
 
-  <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between;">
-    <span style="font-size: 0.82rem; font-family: var(--font-mono); color: var(--text-muted);">{project.period}</span>
+  <!-- Bottom Action Row -->
+  <div class="project-footer">
+    <span class="project-period">{project.period}</span>
     {project.link ? (
-      <a href={project.link.url} target="_blank" rel="noopener" class="link-arrow" style="font-size: 0.88rem;">
-        {project.link.label} <span class="arrow">↗</span>
+      <a href={project.link.url} target="_blank" rel="noopener" class="project-action-link">
+        <span>Google Play</span>
+        <span class="link-arrow-icon">↗</span>
       </a>
     ) : (
-      <span style="font-size: 0.82rem; color: var(--text-muted); font-family: var(--font-mono);">
-        {project.status || 'Private Client / Academic'}
+      <span class="project-status">
+        {project.status || 'Verified Project'}
       </span>
     )}
   </div>
 </div>
 
 <style>
-  .project-preview-wrap {
-    margin: 1.1rem 0 0.8rem 0;
-    border-radius: 14px;
-    overflow: hidden;
-    height: 170px;
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 1.4rem;
+    border-radius: 20px;
+    background: var(--bg-surface);
     border: 1px solid var(--border-medium);
-    background: #000;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.28s ease,
+                border-color 0.28s ease;
+    position: relative;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--project-accent);
+    box-shadow: 0 16px 36px -12px color-mix(in srgb, var(--project-accent) 26%, transparent),
+                0 0 0 1px color-mix(in srgb, var(--project-accent) 30%, transparent);
+  }
+
+  /* Header */
+  .project-header {
+    display: flex;
+    gap: 0.85rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-icon-box {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--glow-color);
+    box-shadow: 0 0 16px -4px var(--glow-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .project-icon-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project-icon-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+
+  .project-meta {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .project-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .project-title {
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .project-install-pill {
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    color: var(--pill-color);
+    border: 1px solid color-mix(in srgb, var(--pill-color) 40%, transparent);
+    background: color-mix(in srgb, var(--pill-color) 12%, var(--bg-surface));
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .project-context {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Headline */
+  .project-headline {
+    font-size: 0.88rem;
+    line-height: 1.48;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.6rem;
+  }
+
+  /* Preview Container */
+  .project-preview-wrap {
+    margin: 0.6rem 0 0.85rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 155px;
+    border: 1px solid var(--border-medium);
+    background: var(--bg-subtle);
     position: relative;
     cursor: pointer;
     outline-offset: 2px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   }
 
   .project-preview-wrap:focus-visible {
@@ -109,13 +282,13 @@ const { project, index = 0 } = Astro.props;
   }
 
   .project-preview-wrap:hover .card-screen-img {
-    transform: scale(1.05);
+    transform: scale(1.04);
   }
 
   .preview-zoom-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(10, 14, 22, 0.55);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,14 +304,14 @@ const { project, index = 0 } = Astro.props;
   .preview-zoom-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    padding: 0.4rem 0.85rem;
+    gap: 0.4rem;
+    padding: 0.35rem 0.8rem;
     border-radius: var(--radius-pill);
-    background: rgba(15, 23, 42, 0.9);
+    background: rgba(15, 23, 42, 0.95);
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.25);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-family: var(--font-mono);
     font-weight: 600;
     transform: translateY(4px);
@@ -153,20 +326,188 @@ const { project, index = 0 } = Astro.props;
     position: absolute;
     bottom: 8px;
     right: 8px;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-family: var(--font-mono);
     font-weight: 600;
-    background: rgba(10, 14, 22, 0.85);
+    background: var(--bg-surface);
     color: var(--primary);
     padding: 3px 8px;
     border-radius: 6px;
     backdrop-filter: blur(6px);
-    border: 1px solid var(--border-subtle);
+    border: 1px solid var(--border-medium);
+    box-shadow: var(--shadow-sm);
     z-index: 5;
     transition: opacity var(--transition-fast);
   }
 
   .project-preview-wrap:hover .preview-badge {
     opacity: 0;
+  }
+
+  /* Tech Stack */
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0.4rem 0 0.85rem;
+  }
+
+  .tech-tag {
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    padding: 0.18rem 0.52rem;
+    border-radius: 6px;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    line-height: 1.3;
+  }
+
+  .tech-tag-more {
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    border-color: color-mix(in srgb, var(--primary) 35%, transparent);
+    color: var(--primary);
+    font-weight: 600;
+    cursor: help;
+  }
+
+  /* Bullets */
+  .project-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .project-bullets li {
+    position: relative;
+    padding-left: 1.2rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.48;
+  }
+
+  .project-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--project-accent);
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+
+  /* More Accordion */
+  .project-more-accordion {
+    margin-top: 0.55rem;
+    padding-top: 0.45rem;
+    border-top: 1px dashed var(--border-medium);
+  }
+
+  .project-more-summary {
+    font-size: 0.76rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.25rem 0;
+    user-select: none;
+    transition: color 0.15s ease;
+  }
+
+  .project-more-summary:hover {
+    color: var(--primary-hover);
+  }
+
+  .summary-chevron {
+    transition: transform 0.2s ease;
+  }
+
+  .project-more-accordion[open] .summary-chevron {
+    transform: rotate(180deg);
+  }
+
+  .extra-bullets {
+    margin-top: 0.5rem;
+  }
+
+  .complete-stack-tray {
+    margin-top: 0.65rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .tray-label {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .tray-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.3rem;
+  }
+
+  /* Footer */
+  .project-footer {
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .project-period {
+    font-size: 0.78rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+  }
+
+  .project-action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    color: var(--text-main);
+    padding: 0.32rem 0.8rem;
+    border-radius: 999px;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-medium);
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .project-action-link:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 0 14px var(--primary-glow);
+  }
+
+  .link-arrow-icon {
+    transition: transform 0.2s ease;
+  }
+
+  .project-action-link:hover .link-arrow-icon {
+    transform: translate(2px, -2px);
+  }
+
+  .project-status {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
   }
 </style>

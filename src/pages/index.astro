@@ -21,10 +21,10 @@ const websiteSchema = {
 <Base schema={websiteSchema}>
   <!-- Hero Section with 3D Smartphone Centerpiece -->
   <Hero
-    eyebrow="Flutter Developer · Mobile Engineering"
+    eyebrow="Flutter & Kotlin · Mobile Application Engineer"
     title="Pashupati Chaudhary."
     accent="Crafting high-performance mobile apps."
-    lede="Computer Engineering graduate & Flutter Engineer in Kathmandu. Building production-grade Android & iOS applications using Clean Architecture, Riverpod, offline-first local caching, and real-time backend integrations."
+    lede="Computer Engineering graduate and Mobile Application Developer at Classic Tech. Primarily focused on production Flutter with strong flexibility in native Android (Kotlin)—owning the full lifecycle from architecture and UI execution, through rigorous testing, to automated CI/CD and release publishing on Google Play Store & Apple App Store."
   >
     <Fragment slot="actions">
       <a class="btn" href="/work/">
@@ -82,7 +82,7 @@ const websiteSchema = {
   <Section id="projects" tag="Portfolio" heading="Featured Projects" description="Mobile and fullstack applications built from concept to deployment.">
     <div slot="header-actions">
       <a href="/work/" class="link-arrow">
-        Browse all {projects.length} projects <span class="arrow">›</span>
+        Browse all projects <span class="arrow">›</span>
       </a>
     </div>
 
@@ -94,24 +94,33 @@ const websiteSchema = {
   </Section>
 
   <!-- Profile Spotlight Card with photo main.jpeg -->
-  <div class="container" style="margin: 2rem auto;" data-reveal style="--i:2">
-    <div class="card" style="display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap; background: linear-gradient(135deg, rgba(20, 24, 36, 0.8) 0%, rgba(10, 14, 22, 0.95) 100%);">
-      <div style="width: 140px; height: 140px; border-radius: 28px; overflow: hidden; border: 2px solid var(--border-glow); box-shadow: 0 0 25px var(--primary-glow); flex-shrink: 0;">
-        <img src={site.photo} alt={site.name} style="width: 100%; height: 100%; object-fit: cover;" />
+  <div class="container" style="margin: 2.5rem auto; --i: 2;" data-reveal>
+    <div class="card spotlight-card">
+      <div class="spotlight-avatar-box">
+        <img src={site.photo} alt={site.name} class="spotlight-avatar-img" />
       </div>
-      <div style="flex: 1; min-width: 280px;">
-        <span class="hero-eyebrow" style="margin-bottom: 0.5rem;">
+      <div class="spotlight-content">
+        <div class="spotlight-badge">
           <span class="pulse-dot"></span>
-          <span>Currently at {currentRole.company}</span>
-        </span>
-        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">{site.name}</h3>
-        <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          <span>Currently at {currentRole.company} · {currentRole.title}</span>
+        </div>
+        <h3 class="spotlight-name">{site.name}</h3>
+        <p class="spotlight-bio">
           {currentRole.bullets[0]} {currentRole.bullets[1]}
         </p>
-        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-          <a href="/about/" class="link-arrow">Read full background <span class="arrow">›</span></a>
-          <a href="/cv/" class="link-arrow">Inspect CV <span class="arrow">›</span></a>
-          <a href={site.whatsapp.url} target="_blank" rel="noopener" class="link-arrow">Quick WhatsApp <span class="arrow">↗</span></a>
+        <div class="spotlight-actions">
+          <a href="/about/" class="spotlight-btn spotlight-btn-secondary">
+            <span>Read full background</span>
+            <span class="arrow">›</span>
+          </a>
+          <a href="/cv/" class="spotlight-btn spotlight-btn-secondary">
+            <span>Inspect CV</span>
+            <span class="arrow">›</span>
+          </a>
+          <a href={site.whatsapp.url} target="_blank" rel="noopener" class="spotlight-btn spotlight-btn-primary">
+            <span>Quick WhatsApp</span>
+            <span class="arrow">↗</span>
+          </a>
         </div>
       </div>
     </div>
@@ -151,3 +160,147 @@ const websiteSchema = {
     </div>
   </Section>
 </Base>
+
+<style>
+  .spotlight-card {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    border-radius: 24px;
+    padding: 2.25rem;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+  }
+
+  .spotlight-card:hover {
+    border-color: var(--border-glow);
+    box-shadow: var(--shadow-lg), 0 0 25px var(--primary-glow);
+  }
+
+  .spotlight-avatar-box {
+    width: 135px;
+    height: 135px;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 2px solid var(--primary);
+    box-shadow: 0 8px 24px -4px var(--primary-glow);
+    flex-shrink: 0;
+    background: var(--bg-subtle);
+  }
+
+  .spotlight-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .spotlight-content {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .spotlight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.32rem 0.85rem;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--primary) 32%, transparent);
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.65rem;
+  }
+
+  .spotlight-name {
+    font-size: 1.65rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.25;
+  }
+
+  .spotlight-bio {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0 0 1.25rem 0;
+  }
+
+  .spotlight-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .spotlight-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    padding: 0.42rem 1rem;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .spotlight-btn-secondary {
+    background: var(--bg-subtle);
+    color: var(--text-main);
+    border: 1px solid var(--border-medium);
+  }
+
+  .spotlight-btn-secondary:hover {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px var(--primary-glow);
+  }
+
+  .spotlight-btn-primary {
+    background: var(--primary);
+    color: #ffffff;
+    border: 1px solid var(--primary);
+    box-shadow: 0 4px 14px var(--primary-glow);
+  }
+
+  .spotlight-btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--primary-glow);
+  }
+
+  .spotlight-btn .arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  .spotlight-btn:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 640px) {
+    .spotlight-card {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.5rem;
+      gap: 1.25rem;
+    }
+
+    .spotlight-avatar-box {
+      width: 100px;
+      height: 100px;
+    }
+  }
+</style>
