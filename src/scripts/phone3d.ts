@@ -25,16 +25,28 @@ export const APPS: AppScreen[] = [
       ctx.fillText('9:41', 36, 44);
       ctx.fillText('5G  100%', w - 120, 44);
 
-      // Top Bar
+      // Top Bar with Signature Totto Logo (Dark background, white text, signature twin red dots)
       ctx.fillStyle = '#1E293B';
       ctx.roundRect(24, 70, w - 48, 64, 16);
       ctx.fill();
-      ctx.fillStyle = '#38BDF8';
-      ctx.font = 'bold 26px sans-serif';
-      ctx.fillText('Totto', 48, 112);
+
+      // Signature Totto Logo
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 28px sans-serif';
+      ctx.fillText('totto', 48, 114);
+
+      // Signature twin red dots above the 'tt'
+      ctx.fillStyle = '#E63946';
+      ctx.beginPath();
+      ctx.arc(81, 91, 4.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(98, 91, 4.5, 0, Math.PI * 2);
+      ctx.fill();
+
       ctx.fillStyle = '#94A3B8';
-      ctx.font = '20px sans-serif';
-      ctx.fillText('Indrachowk, KTM', w - 210, 112);
+      ctx.font = '18px sans-serif';
+      ctx.fillText('Indrachowk, KTM', w - 195, 112);
 
       // Search Bar
       ctx.fillStyle = '#334155';

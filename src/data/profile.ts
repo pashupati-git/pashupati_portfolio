@@ -90,7 +90,10 @@ export const projects: Project[] = [
     stack: ['Flutter', 'Riverpod', 'Firebase', 'REST APIs', 'Python Django'],
     period: '2025',
     featured: true,
-    color: '#00B4D8',
+    color: '#E63946',
+    icon: '/icons/totto.png',
+    installs: 'Google Play',
+    link: { label: 'Google Play Listing', url: 'https://play.google.com/store/apps/details?id=com.nepalibazaar.totto' },
     bullets: [
       'Built a community-focused buy and sell mobile application featuring real-time buyer-seller chat and interactive price negotiation.',
       'Implemented secure multi-factor authentication with Phone OTP verification and seamless Google Sign-In.',
@@ -253,6 +256,7 @@ export const projects: Project[] = [
 ];
 
 export const playListings = [
+  { name: 'Totto', installs: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.nepalibazaar.totto', note: 'Buy & sell community marketplace, Flutter & Django', icon: '/icons/totto.png' },
   { name: 'Classic Tech', installs: '100,000+', url: 'https://play.google.com/store/apps/details?id=com.classic.np.app', note: 'Customer support app, Flutter & Kotlin', icon: '/icons/classic-tech.png' },
   { name: 'WiPray', installs: '1,000+', url: 'https://play.google.com/store/apps/details?id=com.wipray.mobile', note: 'Faith social platform, Flutter', icon: '/icons/wipray.png' },
   { name: 'Classic Engine', installs: '10,000+', url: 'https://play.google.com/store/apps/details?id=com.classic.np.engine', note: 'Field technician staff app, Flutter', icon: '/icons/classic-engine.png' },

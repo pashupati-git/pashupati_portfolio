@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://pashupatichaudhary.com.np/sitemap-index.xml
