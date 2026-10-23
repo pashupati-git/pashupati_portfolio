@@ -26,8 +26,8 @@ const description =
     </Fragment>
   </Hero>
 
-  <Figure value={`${projects.length} Apps`}>
-    production applications developed across Android, iOS, and Android TV. From national ISP customer suites past 110,000 installs to solely built customer care portals and local community marketplaces.
+  <Figure value={`${projects.length} Projects`}>
+    software and mobile applications engineered across Flutter, Kotlin, MERN fullstack, and machine learning integrations. From nationwide ISP customer suites past 110,000 installs to dedicated web discovery portals and TFLite edge intelligence.
   </Figure>
 
   <!-- Interactive Filter Tabs -->
@@ -35,7 +35,9 @@ const description =
     <div slot="header-actions">
       <div class="app-selector-pills" id="project-filters" style="margin: 0;">
         <button class="app-pill active" type="button" data-filter="all">All ({projects.length})</button>
-        <button class="app-pill" type="button" data-filter="Flutter / Mobile">Flutter / Mobile</button>
+        <button class="app-pill" type="button" data-filter="Flutter / Mobile">Flutter / Mobile ({projects.filter((p) => p.category === 'Flutter / Mobile').length})</button>
+        <button class="app-pill" type="button" data-filter="Fullstack / Web">Fullstack / Web ({projects.filter((p) => p.category === 'Fullstack / Web').length})</button>
+        <button class="app-pill" type="button" data-filter="ML & AI">ML & AI ({projects.filter((p) => p.category === 'ML & AI').length})</button>
       </div>
     </div>
 

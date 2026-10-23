@@ -124,7 +124,7 @@ const accent = project.color || '#00e5ff';
     <span class="project-period">{project.period}</span>
     {project.link ? (
       <a href={project.link.url} target="_blank" rel="noopener" class="project-action-link">
-        <span>Google Play</span>
+        <span>{project.link.label || 'View Project'}</span>
         <span class="link-arrow-icon">↗</span>
       </a>
     ) : (
