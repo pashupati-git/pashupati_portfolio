@@ -5,430 +5,338 @@ export interface AppScreen {
   name: string;
   tagline: string;
   themeColor: string;
-  renderScreen: (ctx: CanvasRenderingContext2D, width: number, height: number) => void;
+  screenImage?: string;
+  renderScreen?: (ctx: CanvasRenderingContext2D, width: number, height: number) => void;
 }
 
 export const APPS: AppScreen[] = [
   {
     id: 'totto',
     name: 'Totto',
-    tagline: 'Buy & Sell Marketplace',
-    themeColor: '#00B4D8',
+    tagline: 'Buy & Sell Community Marketplace',
+    themeColor: '#E63946',
+    screenImage: '/screens/totto.png',
     renderScreen: (ctx, w, h) => {
-      // Clean modern Flutter UI for Totto
       ctx.fillStyle = '#0F172A';
       ctx.fillRect(0, 0, w, h);
 
       // Status Bar
       ctx.fillStyle = '#94A3B8';
-      ctx.font = 'bold 22px sans-serif';
-      ctx.fillText('9:41', 36, 44);
-      ctx.fillText('5G  100%', w - 120, 44);
-
-      // Top Bar with Signature Totto Logo (Dark background, white text, signature twin red dots)
-      ctx.fillStyle = '#1E293B';
-      ctx.roundRect(24, 70, w - 48, 64, 16);
-      ctx.fill();
-
-      // Signature Totto Logo
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 28px sans-serif';
-      ctx.fillText('totto', 48, 114);
-
-      // Signature twin red dots above the 'tt'
-      ctx.fillStyle = '#E63946';
-      ctx.beginPath();
-      ctx.arc(81, 91, 4.5, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(98, 91, 4.5, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = '#94A3B8';
-      ctx.font = '18px sans-serif';
-      ctx.fillText('Indrachowk, KTM', w - 195, 112);
-
-      // Search Bar
-      ctx.fillStyle = '#334155';
-      ctx.roundRect(24, 150, w - 48, 52, 12);
-      ctx.fill();
-      ctx.fillStyle = '#64748B';
-      ctx.font = '20px sans-serif';
-      ctx.fillText('Search laptops, phones, bikes...', 48, 184);
-
-      // Banner Card
-      const grad = ctx.createLinearGradient(24, 220, w - 24, 360);
-      grad.addColorStop(0, '#0284C7');
-      grad.addColorStop(1, '#00B4D8');
-      ctx.fillStyle = grad;
-      ctx.roundRect(24, 220, w - 48, 160, 20);
-      ctx.fill();
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 28px sans-serif';
-      ctx.fillText('Sell & Buy Fast in KTM', 48, 270);
-      ctx.font = '20px sans-serif';
-      ctx.fillText('Real-time chat & price negotiation', 48, 310);
-      ctx.fillStyle = '#0F172A';
-      ctx.roundRect(48, 330, 140, 36, 18);
-      ctx.fill();
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 16px sans-serif';
-      ctx.fillText('Post an Ad', 74, 354);
-
-      // Categories
-      const cats = ['Electronics', 'Vehicles', 'Property', 'Fashion'];
-      cats.forEach((cat, i) => {
-        const x = 24 + i * 118;
-        ctx.fillStyle = '#1E293B';
-        ctx.roundRect(x, 400, 106, 44, 12);
-        ctx.fill();
-        ctx.fillStyle = '#E2E8F0';
-        ctx.font = 'bold 16px sans-serif';
-        ctx.fillText(cat, x + 14, 428);
-      });
-
-      // Product Feed Grid
-      for (let i = 0; i < 2; i++) {
-        const y = 470 + i * 220;
-        // Item 1
-        ctx.fillStyle = '#1E293B';
-        ctx.roundRect(24, y, (w - 60) / 2, 200, 16);
-        ctx.fill();
-        ctx.fillStyle = '#334155';
-        ctx.roundRect(32, y + 8, (w - 60) / 2 - 16, 110, 12);
-        ctx.fill();
-        ctx.fillStyle = '#38BDF8';
-        ctx.font = 'bold 22px sans-serif';
-        ctx.fillText('Rs. 45,000', 36, y + 148);
-        ctx.fillStyle = '#94A3B8';
-        ctx.font = '16px sans-serif';
-        ctx.fillText('MacBook Air M1', 36, y + 174);
-
-        // Item 2
-        const x2 = 24 + (w - 60) / 2 + 12;
-        ctx.fillStyle = '#1E293B';
-        ctx.roundRect(x2, y, (w - 60) / 2, 200, 16);
-        ctx.fill();
-        ctx.fillStyle = '#334155';
-        ctx.roundRect(x2 + 8, y + 8, (w - 60) / 2 - 16, 110, 12);
-        ctx.fill();
-        ctx.fillStyle = '#38BDF8';
-        ctx.font = 'bold 22px sans-serif';
-        ctx.fillText('Rs. 22,500', x2 + 12, y + 148);
-        ctx.fillStyle = '#94A3B8';
-        ctx.font = '16px sans-serif';
-        ctx.fillText('Sony WH-1000XM4', x2 + 12, y + 174);
-      }
-
-      // Bottom Navigation Bar
-      ctx.fillStyle = '#0B0F19';
-      ctx.fillRect(0, h - 80, w, 80);
-      ctx.fillStyle = '#00B4D8';
-      ctx.font = 'bold 18px sans-serif';
-      ctx.fillText('Explore', 40, h - 35);
-      ctx.fillStyle = '#64748B';
-      ctx.fillText('Chat (3)', 160, h - 35);
-      ctx.fillText('Saved', 290, h - 35);
-      ctx.fillText('Profile', 400, h - 35);
-    },
-  },
-  {
-    id: 'caro-tv',
-    name: 'Caro TV',
-    tagline: 'Live IPTV & Streaming',
-    themeColor: '#13753D',
-    renderScreen: (ctx, w, h) => {
-      ctx.fillStyle = '#05140B';
-      ctx.fillRect(0, 0, w, h);
-
-      // Status Bar
-      ctx.fillStyle = '#86EFAC';
-      ctx.font = 'bold 22px sans-serif';
-      ctx.fillText('9:41', 36, 44);
-      ctx.fillText('5G  100%', w - 120, 44);
+      ctx.font = 'bold 30px sans-serif';
+      ctx.fillText('9:41', 48, 64);
+      ctx.fillText('5G  100%', w - 180, 64);
 
       // Header
-      ctx.fillStyle = '#13753D';
-      ctx.roundRect(24, 70, w - 48, 64, 16);
-      ctx.fill();
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 26px sans-serif';
-      ctx.fillText('📺 Caro TV Nepal', 48, 112);
-
-      // Live Player Window
-      ctx.fillStyle = '#0F2918';
-      ctx.roundRect(24, 150, w - 48, 280, 20);
-      ctx.fill();
-
-      // Video preview area
-      const vidGrad = ctx.createLinearGradient(24, 150, w - 24, 430);
-      vidGrad.addColorStop(0, '#1E4A2D');
-      vidGrad.addColorStop(1, '#0A1F12');
-      ctx.fillStyle = vidGrad;
-      ctx.roundRect(36, 162, w - 72, 210, 14);
-      ctx.fill();
-
-      // Live Badge
-      ctx.fillStyle = '#EF4444';
-      ctx.roundRect(50, 178, 70, 28, 14);
-      ctx.fill();
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 14px sans-serif';
-      ctx.fillText('● LIVE', 62, 197);
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 22px sans-serif';
-      ctx.fillText('National Broadcast HD', 50, 340);
-      ctx.font = '16px sans-serif';
-      ctx.fillStyle = '#86EFAC';
-      ctx.fillText('HLS Adaptive Stream · 1080p 60fps', 50, 368);
-
-      // Channel Guide EPG
-      ctx.fillStyle = '#0F2918';
-      ctx.roundRect(24, 450, w - 48, 260, 20);
+      ctx.fillStyle = '#1E293B';
+      ctx.roundRect(32, 100, w - 64, 88, 20);
       ctx.fill();
 
       ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 20px sans-serif';
-      ctx.fillText('Live Channels EPG', 48, 490);
+      ctx.font = 'bold 38px sans-serif';
+      ctx.fillText('totto', 64, 158);
 
-      const channels = [
-        { name: 'Nepal Television HD', show: 'Main Evening News' },
-        { name: 'Kantipur TV HD', show: 'Tough Talk Current Affairs' },
-        { name: 'AP1 Television', show: 'Live Sports Broadcast' },
+      ctx.fillStyle = '#E63946';
+      ctx.beginPath();
+      ctx.arc(110, 126, 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(134, 126, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Search
+      ctx.fillStyle = '#334155';
+      ctx.roundRect(32, 210, w - 64, 72, 16);
+      ctx.fill();
+      ctx.fillStyle = '#94A3B8';
+      ctx.font = '26px sans-serif';
+      ctx.fillText('Search Chat Bazaar, electronics...', 64, 255);
+
+      // Banner
+      const grad = ctx.createLinearGradient(32, 310, w - 32, 520);
+      grad.addColorStop(0, '#E63946');
+      grad.addColorStop(1, '#FF6B6B');
+      ctx.fillStyle = grad;
+      ctx.roundRect(32, 310, w - 64, 220, 24);
+      ctx.fill();
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 36px sans-serif';
+      ctx.fillText('Chat, Negotiate, Connect', 64, 380);
+      ctx.font = '26px sans-serif';
+      ctx.fillText('Direct local deals in Kathmandu', 64, 430);
+
+      // Chat Tiers
+      const tiers = [
+        { name: 'Essential Tier', role: 'Free Community' },
+        { name: 'Standard Tier', role: 'Verified Traders' },
+        { name: 'Premium Tier', role: 'Priority Listings' },
       ];
 
-      channels.forEach((ch, idx) => {
-        const cy = 520 + idx * 58;
-        ctx.fillStyle = idx === 0 ? '#1E4A2D' : '#143821';
-        ctx.roundRect(40, cy, w - 80, 48, 12);
+      tiers.forEach((tier, i) => {
+        const y = 560 + i * 110;
+        ctx.fillStyle = '#1E293B';
+        ctx.roundRect(32, y, w - 64, 90, 18);
         ctx.fill();
-
-        ctx.fillStyle = '#86EFAC';
-        ctx.font = 'bold 16px sans-serif';
-        ctx.fillText(ch.name, 56, cy + 30);
-        ctx.fillStyle = '#E2E8F0';
-        ctx.font = '14px sans-serif';
-        ctx.fillText(ch.show, w - 210, cy + 30);
+        ctx.fillStyle = '#F8FAFC';
+        ctx.font = 'bold 28px sans-serif';
+        ctx.fillText(tier.name, 64, y + 45);
+        ctx.fillStyle = '#94A3B8';
+        ctx.font = '22px sans-serif';
+        ctx.fillText(tier.role, 64, y + 75);
       });
-
-      // Bottom Navigation Bar
-      ctx.fillStyle = '#05140B';
-      ctx.fillRect(0, h - 80, w, 80);
-      ctx.fillStyle = '#22C55E';
-      ctx.font = 'bold 18px sans-serif';
-      ctx.fillText('Live TV', 45, h - 35);
-      ctx.fillStyle = '#86EFAC';
-      ctx.fillText('Channels', 160, h - 35);
-      ctx.fillText('Guide', 290, h - 35);
-      ctx.fillText('Settings', 395, h - 35);
     },
   },
   {
     id: 'nnet',
     name: 'NNET',
-    tagline: 'ISP Customer Support App',
+    tagline: 'Customer Support & Diagnostics App',
     themeColor: '#7B2CBF',
+    screenImage: '/screens/nnet.png',
     renderScreen: (ctx, w, h) => {
       ctx.fillStyle = '#100B1A';
       ctx.fillRect(0, 0, w, h);
 
-      // Status Bar
       ctx.fillStyle = '#E9D5FF';
-      ctx.font = 'bold 22px sans-serif';
-      ctx.fillText('9:41', 36, 44);
-      ctx.fillText('WiFi 6  100%', w - 140, 44);
+      ctx.font = 'bold 30px sans-serif';
+      ctx.fillText('9:41', 48, 64);
+      ctx.fillText('WiFi 6  100%', w - 210, 64);
 
-      // Top Bar with Signature NNET Purple Theme
-      const gradHeader = ctx.createLinearGradient(24, 70, w - 24, 134);
+      // Header
+      const gradHeader = ctx.createLinearGradient(32, 100, w - 32, 190);
       gradHeader.addColorStop(0, '#6D28D9');
       gradHeader.addColorStop(1, '#9333EA');
       ctx.fillStyle = gradHeader;
-      ctx.roundRect(24, 70, w - 48, 64, 16);
+      ctx.roundRect(32, 100, w - 64, 90, 20);
       ctx.fill();
 
-      // NNET Logo text
       ctx.fillStyle = '#FFFFFF';
-      ctx.font = '900 28px sans-serif';
-      ctx.fillText('NNET', 48, 114);
-      ctx.font = '16px sans-serif';
+      ctx.font = '900 38px sans-serif';
+      ctx.fillText('NNET', 64, 160);
+      ctx.font = '22px sans-serif';
       ctx.fillStyle = '#E9D5FF';
-      ctx.fillText('Customer Support', w - 195, 112);
+      ctx.fillText('Broadband Customer Support', w - 380, 158);
 
-      // Account Status Card
-      ctx.fillStyle = '#1D132D';
-      ctx.roundRect(24, 150, w - 48, 230, 20);
-      ctx.fill();
+      // Action Grid
+      const items = ['Internet', 'IP TV', 'Router', 'Payment', 'Support', 'Refer'];
+      items.forEach((item, i) => {
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        const bx = 32 + col * ((w - 64) / 3);
+        const by = 220 + row * 130;
+        ctx.fillStyle = '#1D132D';
+        ctx.roundRect(bx + 6, by, (w - 64) / 3 - 12, 115, 16);
+        ctx.fill();
+        ctx.fillStyle = '#C084FC';
+        ctx.font = 'bold 24px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(item, bx + (w - 64) / 6, by + 70);
+        ctx.textAlign = 'start';
+      });
 
-      ctx.fillStyle = '#A855F7';
-      ctx.font = 'bold 24px sans-serif';
-      ctx.fillText('Fiber Pro 250 Mbps', 48, 195);
-
-      ctx.fillStyle = '#D8B4FE';
-      ctx.font = '18px sans-serif';
-      ctx.fillText('ONU Router Status: ONLINE', 48, 230);
-      ctx.fillText('Plan Expiry: 28 Days Remaining', 48, 265);
-
-      // Quick action buttons inside card
-      ctx.fillStyle = '#7B2CBF';
-      ctx.roundRect(48, 300, 140, 44, 22);
-      ctx.fill();
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 16px sans-serif';
-      ctx.fillText('Pay Bill', 85, 328);
-
-      ctx.fillStyle = '#2E1065';
-      ctx.roundRect(205, 300, 160, 44, 22);
-      ctx.fill();
-      ctx.fillStyle = '#D8B4FE';
-      ctx.fillText('Router Restart', 230, 328);
-
-      // Diagnostics & Speed Card
-      ctx.fillStyle = '#1D132D';
-      ctx.roundRect(24, 400, w - 48, 310, 20);
-      ctx.fill();
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 22px sans-serif';
-      ctx.fillText('Optical Network Diagnostics', 48, 445);
-
-      // Gauge dial
-      ctx.beginPath();
-      ctx.arc(w / 2, 535, 70, Math.PI * 0.8, Math.PI * 2.2);
-      ctx.strokeStyle = '#2E1065';
-      ctx.lineWidth = 14;
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.arc(w / 2, 535, 70, Math.PI * 0.8, Math.PI * 1.85);
-      ctx.strokeStyle = '#A855F7';
-      ctx.lineWidth = 14;
-      ctx.stroke();
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 36px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('248', w / 2, 542);
-      ctx.font = '16px sans-serif';
-      ctx.fillStyle = '#C084FC';
-      ctx.fillText('Mbps Optical Speed', w / 2, 570);
-      ctx.textAlign = 'start';
-
-      // Live Ticket Support Button
-      ctx.fillStyle = '#7B2CBF';
-      ctx.roundRect(48, 640, w - 96, 44, 22);
+      // Banner
+      const cardGrad = ctx.createLinearGradient(32, 510, w - 32, 720);
+      cardGrad.addColorStop(0, '#3B0764');
+      cardGrad.addColorStop(1, '#6B21A8');
+      ctx.fillStyle = cardGrad;
+      ctx.roundRect(32, 510, w - 64, 210, 24);
       ctx.fill();
       ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 18px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('Open Instant Support Ticket', w / 2, 668);
-      ctx.textAlign = 'start';
-
-      // Bottom Navigation Bar
-      ctx.fillStyle = '#0D0715';
-      ctx.fillRect(0, h - 80, w, 80);
-      ctx.fillStyle = '#A855F7';
-      ctx.font = 'bold 18px sans-serif';
-      ctx.fillText('Home', 45, h - 35);
-      ctx.fillStyle = '#C084FC';
-      ctx.fillText('Tickets', 160, h - 35);
-      ctx.fillText('Bills', 285, h - 35);
-      ctx.fillText('Profile', 400, h - 35);
+      ctx.font = 'bold 34px sans-serif';
+      ctx.fillText('Fiber NNET Always Connected', 64, 590);
+      ctx.font = '24px sans-serif';
+      ctx.fillStyle = '#E9D5FF';
+      ctx.fillText('High-speed fiber & automated diagnostics', 64, 640);
     },
   },
   {
     id: 'classic-tech',
     name: 'Classic Tech',
-    tagline: 'ISP Support App (100k+ Users)',
+    tagline: 'Flagship Broadband Customer App',
     themeColor: '#13753D',
+    screenImage: '/screens/classic-tech.png',
     renderScreen: (ctx, w, h) => {
-      ctx.fillStyle = '#0A1E14';
+      ctx.fillStyle = '#061A0E';
       ctx.fillRect(0, 0, w, h);
 
-      // Status Bar
       ctx.fillStyle = '#A3E635';
-      ctx.font = 'bold 22px sans-serif';
-      ctx.fillText('9:41', 36, 44);
-      ctx.fillText('WiFi 6  100%', w - 140, 44);
+      ctx.font = 'bold 30px sans-serif';
+      ctx.fillText('9:41', 48, 64);
+      ctx.fillText('WiFi 6  100%', w - 210, 64);
 
       // Header
-      ctx.fillStyle = '#13753D';
-      ctx.roundRect(24, 70, w - 48, 64, 16);
+      ctx.fillStyle = '#0F5132';
+      ctx.roundRect(32, 100, w - 64, 90, 20);
       ctx.fill();
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 26px sans-serif';
-      ctx.fillText('Classic Tech ISP', 48, 112);
-
-      // Account Status
-      ctx.fillStyle = '#143825';
-      ctx.roundRect(24, 150, w - 48, 220, 20);
-      ctx.fill();
-
-      ctx.fillStyle = '#86EFAC';
-      ctx.font = 'bold 22px sans-serif';
-      ctx.fillText('Fiber Ultra 300 Mbps', 48, 195);
-      ctx.fillStyle = '#D1FAE5';
-      ctx.font = '18px sans-serif';
-      ctx.fillText('Active · Expires in 24 Days', 48, 230);
-      ctx.fillText('Online Devices: 8 connected', 48, 265);
-
-      ctx.fillStyle = '#22C55E';
-      ctx.roundRect(48, 290, 150, 44, 22);
-      ctx.fill();
-      ctx.fillStyle = '#052E16';
-      ctx.font = 'bold 18px sans-serif';
-      ctx.fillText('Renew Plan', 75, 318);
-
-      // Speedtest Gauge Card
-      ctx.fillStyle = '#143825';
-      ctx.roundRect(24, 390, w - 48, 320, 20);
-      ctx.fill();
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 22px sans-serif';
-      ctx.fillText('Optical Gateway Diagnostics', 48, 435);
-
-      ctx.beginPath();
-      ctx.arc(w / 2, 530, 75, Math.PI * 0.8, Math.PI * 2.2);
-      ctx.strokeStyle = '#1F5B39';
-      ctx.lineWidth = 14;
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.arc(w / 2, 530, 75, Math.PI * 0.8, Math.PI * 1.8);
-      ctx.strokeStyle = '#22C55E';
-      ctx.lineWidth = 14;
-      ctx.stroke();
-
       ctx.fillStyle = '#FFFFFF';
       ctx.font = 'bold 36px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('294', w / 2, 535);
-      ctx.font = '16px sans-serif';
-      ctx.fillStyle = '#86EFAC';
-      ctx.fillText('Mbps Download', w / 2, 565);
-      ctx.textAlign = 'start';
+      ctx.fillText('Classic Tech ISP', 64, 158);
 
-      ctx.fillStyle = '#22C55E';
-      ctx.roundRect(48, 640, w - 96, 44, 22);
+      // Grid items
+      const items = ['Internet', 'TV', 'Router', 'Payment', 'Support', 'Refer'];
+      items.forEach((item, i) => {
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        const bx = 32 + col * ((w - 64) / 3);
+        const by = 220 + row * 130;
+        ctx.fillStyle = '#0C2D1A';
+        ctx.roundRect(bx + 6, by, (w - 64) / 3 - 12, 115, 16);
+        ctx.fill();
+        ctx.fillStyle = '#86EFAC';
+        ctx.font = 'bold 24px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(item, bx + (w - 64) / 6, by + 70);
+        ctx.textAlign = 'start';
+      });
+
+      // Speed Card
+      ctx.fillStyle = '#0C2D1A';
+      ctx.roundRect(32, 510, w - 64, 260, 24);
       ctx.fill();
-      ctx.fillStyle = '#052E16';
-      ctx.font = 'bold 18px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('Reboot ONU Router', w / 2, 668);
-      ctx.textAlign = 'start';
-
-      // Bottom Bar
-      ctx.fillStyle = '#0A1E14';
-      ctx.fillRect(0, h - 80, w, 80);
-      ctx.fillStyle = '#22C55E';
-      ctx.font = 'bold 18px sans-serif';
-      ctx.fillText('Dashboard', 40, h - 35);
       ctx.fillStyle = '#86EFAC';
-      ctx.fillText('Caro TV', 170, h - 35);
-      ctx.fillText('Support', 290, h - 35);
-      ctx.fillText('Bill Pay', 400, h - 35);
+      ctx.font = 'bold 30px sans-serif';
+      ctx.fillText('Optical Speed: 1000 Mbps', 64, 580);
+      ctx.fillStyle = '#D1FAE5';
+      ctx.font = '24px sans-serif';
+      ctx.fillText('Subscribers: 100,000+ Active', 64, 630);
+    },
+  },
+  {
+    id: 'classic-engine',
+    name: 'Classic Engine',
+    tagline: 'Field Operations & Staff Dashboard',
+    themeColor: '#0A5C36',
+    screenImage: '/screens/classic-engine.png',
+    renderScreen: (ctx, w, h) => {
+      ctx.fillStyle = '#081D2E';
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.fillStyle = '#7DD3FC';
+      ctx.font = 'bold 30px sans-serif';
+      ctx.fillText('10:22', 48, 64);
+      ctx.fillText('4G LTE  60%', w - 210, 64);
+
+      // Header
+      ctx.fillStyle = '#075985';
+      ctx.roundRect(32, 100, w - 64, 90, 20);
+      ctx.fill();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 34px sans-serif';
+      ctx.fillText('Customer Details & Task', 64, 158);
+
+      // Card
+      ctx.fillStyle = '#0C3754';
+      ctx.roundRect(32, 220, w - 64, 300, 24);
+      ctx.fill();
+
+      ctx.fillStyle = '#38BDF8';
+      ctx.font = 'bold 30px sans-serif';
+      ctx.fillText('Fiber Breakage · Technical', 64, 290);
+      ctx.fillStyle = '#E2E8F0';
+      ctx.font = '24px sans-serif';
+      ctx.fillText('Branch: New Baneshwor', 64, 340);
+      ctx.fillText('Package: Classic-Plus 35 Mbps', 64, 390);
+      ctx.fillText('Optical Diagnostics: -24.5 dBm', 64, 440);
+
+      // Proceed Button
+      ctx.fillStyle = '#0284C7';
+      ctx.roundRect(32, 560, w - 64, 76, 20);
+      ctx.fill();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 28px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Proceed Work Order', w / 2, 608);
+      ctx.textAlign = 'start';
+    },
+  },
+  {
+    id: 'dealer-partner',
+    name: 'Dealer Partner',
+    tagline: 'Referral & Commission Payout Platform',
+    themeColor: '#D97706',
+    screenImage: '/screens/dealer-partner.png',
+    renderScreen: (ctx, w, h) => {
+      ctx.fillStyle = '#1C1304';
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.fillStyle = '#FCD34D';
+      ctx.font = 'bold 30px sans-serif';
+      ctx.fillText('3:11 PM', 48, 64);
+      ctx.fillText('5G  58%', w - 170, 64);
+
+      // Header
+      ctx.fillStyle = '#92400E';
+      ctx.roundRect(32, 100, w - 64, 90, 20);
+      ctx.fill();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 36px sans-serif';
+      ctx.fillText('Dealer Dashboard', 64, 158);
+
+      // Balance Card
+      ctx.fillStyle = '#362208';
+      ctx.roundRect(32, 220, w - 64, 180, 24);
+      ctx.fill();
+
+      ctx.fillStyle = '#FBBF24';
+      ctx.font = 'bold 32px sans-serif';
+      ctx.fillText('Commission Balance', 64, 280);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 44px sans-serif';
+      ctx.fillText('NPR 45,800', 64, 345);
+
+      // Leads Actions
+      ctx.fillStyle = '#362208';
+      ctx.roundRect(32, 430, (w - 80) / 2, 130, 20);
+      ctx.fill();
+      ctx.roundRect(32 + (w - 80) / 2 + 16, 430, (w - 80) / 2, 130, 20);
+      ctx.fill();
+
+      ctx.fillStyle = '#FCD34D';
+      ctx.font = 'bold 26px sans-serif';
+      ctx.fillText('Leads Details', 64, 505);
+      ctx.fillText('Add New Lead', 48 + (w - 80) / 2 + 16, 505);
+    },
+  },
+  {
+    id: 'caro-tv',
+    name: 'Caro TV',
+    tagline: 'Live IPTV & Streaming Player',
+    themeColor: '#E11D48',
+    screenImage: '/screens/caro-tv.png',
+    renderScreen: (ctx, w, h) => {
+      ctx.fillStyle = '#05140B';
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.fillStyle = '#86EFAC';
+      ctx.font = 'bold 30px sans-serif';
+      ctx.fillText('2:55 PM', 48, 64);
+      ctx.fillText('5G  100%', w - 180, 64);
+
+      // Banner
+      const tvGrad = ctx.createLinearGradient(32, 100, w - 32, 340);
+      tvGrad.addColorStop(0, '#13753D');
+      tvGrad.addColorStop(1, '#052E16');
+      ctx.fillStyle = tvGrad;
+      ctx.roundRect(32, 100, w - 64, 240, 24);
+      ctx.fill();
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 38px sans-serif';
+      ctx.fillText('FOOTBALL FEVER', 64, 180);
+      ctx.font = '24px sans-serif';
+      ctx.fillStyle = '#86EFAC';
+      ctx.fillText('Live TV & Streaming Channels', 64, 230);
+
+      // Channel List
+      const channels = ['Nepal Television HD', 'NTV News HD', 'NTV Plus HD'];
+      channels.forEach((ch, idx) => {
+        const cy = 370 + idx * 100;
+        ctx.fillStyle = '#0F3820';
+        ctx.roundRect(32, cy, w - 64, 80, 18);
+        ctx.fill();
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 26px sans-serif';
+        ctx.fillText(ch, 64, cy + 50);
+      });
     },
   },
 ];
@@ -444,6 +352,7 @@ export class Phone3DShowcase {
   private screenCtx: CanvasRenderingContext2D;
   private screenTexture: THREE.CanvasTexture;
 
+  private imageCache: Map<string, HTMLImageElement> = new Map();
   private isDragging = false;
   private previousMousePosition = { x: 0, y: 0 };
   private targetRotation = { x: 0.1, y: -0.35 };
@@ -473,53 +382,73 @@ export class Phone3DShowcase {
     this.renderer.setSize(width, height);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.15;
+    this.renderer.toneMappingExposure = 1.1;
     container.appendChild(this.renderer.domElement);
 
-    // 4. Screen Canvas & Texture
+    // 4. Screen Canvas & Texture (720x1440 for high-density smartphone fidelity)
     this.screenCanvas = document.createElement('canvas');
-    this.screenCanvas.width = 512;
-    this.screenCanvas.height = 1024;
-    this.screenCtx = this.screenCanvas.getContext('2d')!;
+    this.screenCanvas.width = 720;
+    this.screenCanvas.height = 1440;
+    this.screenCtx = this.screenCanvas.getContext('2d', { alpha: false })!;
     this.screenTexture = new THREE.CanvasTexture(this.screenCanvas);
-    this.screenTexture.anisotropy = 8;
+    this.screenTexture.anisotropy = 16;
+    this.screenTexture.colorSpace = THREE.SRGBColorSpace;
     this.screenTexture.generateMipmaps = true;
 
-    // 5. Lighting
+    // 5. Preload real app UI screenshots
+    this.preloadScreens();
+
+    // 6. Lighting
     this.setupLighting();
 
-    // 6. Build procedural high-end phone
+    // 7. Build procedural high-end phone
     this.phoneGroup = new THREE.Group();
     this.buildPhone();
     this.scene.add(this.phoneGroup);
 
-    // 7. Render initial screen
+    // 8. Render initial screen
     this.updateScreen(0);
 
-    // 8. Event listeners
+    // 9. Event listeners
     this.initEvents();
 
-    // 9. Start animation loop
+    // 10. Start animation loop
     this.animate();
+  }
+
+  private preloadScreens() {
+    APPS.forEach((app, idx) => {
+      if (app.screenImage) {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.src = `${app.screenImage}?v=3`;
+        img.onload = () => {
+          this.imageCache.set(app.id, img);
+          if (this.currentAppIndex === idx) {
+            this.updateScreen(idx);
+          }
+        };
+      }
+    });
   }
 
   private setupLighting() {
     // Ambient light
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.3);
     this.scene.add(ambientLight);
 
     // Main key light
-    const keyLight = new THREE.DirectionalLight(0xffffff, 2.8);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.6);
     keyLight.position.set(4, 5, 5);
     this.scene.add(keyLight);
 
-    // Cool cyan rim light
-    const rimLight = new THREE.DirectionalLight(0x00d2b4, 2.2);
+    // Cool rim light
+    const rimLight = new THREE.DirectionalLight(0x00d2b4, 2.0);
     rimLight.position.set(-5, 3, -2);
     this.scene.add(rimLight);
 
     // Warm accent fill light
-    const warmLight = new THREE.DirectionalLight(0x3a86ff, 1.8);
+    const warmLight = new THREE.DirectionalLight(0x3a86ff, 1.5);
     warmLight.position.set(2, -4, 3);
     this.scene.add(warmLight);
   }
@@ -562,40 +491,40 @@ export class Phone3DShowcase {
 
     // Titanium / Matte Dark Metal Body Material
     const bodyMat = new THREE.MeshStandardMaterial({
-      color: 0x181c24,
-      metalness: 0.88,
-      roughness: 0.28,
+      color: 0x141820,
+      metalness: 0.9,
+      roughness: 0.25,
     });
     const frameMesh = new THREE.Mesh(frameGeo, bodyMat);
     this.phoneGroup.add(frameMesh);
 
-    // Front Screen Glass Face (OLED Luminescence)
+    // Front Screen Glass Face with true OLED depth and vivid screenshot luminescence
     const screenGeo = new THREE.PlaneGeometry(phoneWidth - 0.16, phoneHeight - 0.2);
     const screenMat = new THREE.MeshStandardMaterial({
       map: this.screenTexture,
       emissive: new THREE.Color(0xffffff),
       emissiveMap: this.screenTexture,
-      emissiveIntensity: 0.85,
-      roughness: 0.15,
-      metalness: 0.05,
+      emissiveIntensity: 0.25, // Preserves deep contrast & prevents washing out UI colors
+      roughness: 0.12,
+      metalness: 0.04,
     });
     this.screenMesh = new THREE.Mesh(screenGeo, screenMat);
     this.screenMesh.position.z = phoneDepth / 2 + 0.045;
     this.phoneGroup.add(this.screenMesh);
 
     // Camera Punchhole / Dynamic Island
-    const islandGeo = new THREE.CapsuleGeometry(0.09, 0.28, 8, 16);
+    const islandGeo = new THREE.CapsuleGeometry(0.08, 0.26, 8, 16);
     const islandMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
     const island = new THREE.Mesh(islandGeo, islandMat);
     island.rotation.z = Math.PI / 2;
-    island.position.set(0, phoneHeight / 2 - 0.28, phoneDepth / 2 + 0.05);
+    island.position.set(0, phoneHeight / 2 - 0.26, phoneDepth / 2 + 0.05);
     this.phoneGroup.add(island);
 
     // Back Camera Bump
     const bumpGeo = new THREE.BoxGeometry(1.2, 1.4, 0.12);
     const bumpMat = new THREE.MeshStandardMaterial({
-      color: 0x12151b,
-      metalness: 0.9,
+      color: 0x101318,
+      metalness: 0.92,
       roughness: 0.2,
     });
     const bump = new THREE.Mesh(bumpGeo, bumpMat);
@@ -623,7 +552,25 @@ export class Phone3DShowcase {
     if (index < 0 || index >= APPS.length) return;
     this.currentAppIndex = index;
     const app = APPS[index];
-    app.renderScreen(this.screenCtx, this.screenCanvas.width, this.screenCanvas.height);
+    const w = this.screenCanvas.width;
+    const h = this.screenCanvas.height;
+
+    const cachedImg = this.imageCache.get(app.id);
+
+    // If real screenshot image is loaded, draw it directly with high-density scaling
+    if (cachedImg && cachedImg.complete && cachedImg.naturalWidth > 0) {
+      this.screenCtx.fillStyle = app.themeColor;
+      this.screenCtx.fillRect(0, 0, w, h);
+      this.screenCtx.imageSmoothingEnabled = true;
+      this.screenCtx.imageSmoothingQuality = 'high';
+      this.screenCtx.drawImage(cachedImg, 0, 0, w, h);
+    } else {
+      // Procedural fallback while image loads
+      if (app.renderScreen) {
+        app.renderScreen(this.screenCtx, w, h);
+      }
+    }
+
     this.screenTexture.needsUpdate = true;
   }
 
@@ -642,7 +589,6 @@ export class Phone3DShowcase {
 
     const onMove = (clientX: number, clientY: number) => {
       if (!this.isDragging) {
-        // Subtle tilt when hovering
         const rect = dom.getBoundingClientRect();
         const normX = ((clientX - rect.left) / rect.width) * 2 - 1;
         const normY = -(((clientY - rect.top) / rect.height) * 2 - 1);
@@ -657,9 +603,7 @@ export class Phone3DShowcase {
       this.targetRotation.y += deltaX * 0.008;
       this.targetRotation.x += deltaY * 0.008;
 
-      // Clamp X rotation to prevent flipping
       this.targetRotation.x = Math.max(-0.6, Math.min(0.6, this.targetRotation.x));
-
       this.previousMousePosition = { x: clientX, y: clientY };
     };
 

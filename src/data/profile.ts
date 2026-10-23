@@ -92,6 +92,7 @@ export const projects: Project[] = [
     featured: true,
     color: '#E63946',
     icon: '/icons/totto.png',
+    previewScreen: '/screens/totto.png',
     installs: 'Google Play',
     link: { label: 'Google Play Listing', url: 'https://play.google.com/store/apps/details?id=com.nepalibazaar.totto' },
     bullets: [
@@ -112,6 +113,7 @@ export const projects: Project[] = [
     featured: true,
     color: '#7B2CBF',
     icon: '/icons/nnet.png',
+    previewScreen: '/screens/nnet.png',
     installs: 'Google Play',
     link: { label: 'NNET on Google Play', url: 'https://play.google.com/store/apps/details?id=com.nnet.np.app' },
     bullets: [
@@ -132,6 +134,7 @@ export const projects: Project[] = [
     featured: true,
     installs: '100,000+',
     icon: '/icons/classic-tech.png',
+    previewScreen: '/screens/classic-tech.png',
     color: '#13753D',
     link: { label: 'Classic Tech on Google Play', url: 'https://play.google.com/store/apps/details?id=com.classic.np.app' },
     bullets: [
@@ -151,7 +154,8 @@ export const projects: Project[] = [
     featured: true,
     installs: '10,000+',
     icon: '/icons/classic-engine.png',
-    color: '#0284C7',
+    previewScreen: '/screens/classic-engine.png',
+    color: '#0A5C36',
     link: { label: 'Classic Engine on Google Play', url: 'https://play.google.com/store/apps/details?id=com.classic.np.engine' },
     bullets: [
       'Engineered field operations workflow for technicians managing fiber-to-the-home (FTTH) installations, work orders, and on-site troubleshooting.',
@@ -170,6 +174,7 @@ export const projects: Project[] = [
     featured: true,
     installs: '1,000+',
     icon: '/icons/dealer-partner.png',
+    previewScreen: '/screens/dealer-partner.png',
     color: '#D97706',
     link: { label: 'Dealer Partner on Google Play', url: 'https://play.google.com/store/apps/details?id=com.classic.partner.np.app' },
     bullets: [
@@ -189,6 +194,7 @@ export const projects: Project[] = [
     featured: true,
     installs: '1,000+',
     icon: '/icons/caro-tv.png',
+    previewScreen: '/screens/caro-tv.png',
     color: '#E11D48',
     link: { label: 'Caro TV on Google Play', url: 'https://play.google.com/store/apps/details?id=com.classic.np.app.carotv' },
     bullets: [
@@ -253,6 +259,7 @@ export const skills = [
       'Advanced UI Development (Figma → Flutter)',
       'Custom Animations & Hero Transitions',
       'Android Studio & VS Code Tooling',
+      'Clean Architecture ',
     ],
   },
   {
