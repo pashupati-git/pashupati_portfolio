@@ -211,95 +211,114 @@ export const APPS: AppScreen[] = [
     },
   },
   {
-    id: 'wipray',
-    name: 'WiPray',
-    tagline: 'Faith Social & Media Platform',
-    themeColor: '#00988A',
+    id: 'nnet',
+    name: 'NNET',
+    tagline: 'ISP Customer Support App',
+    themeColor: '#7B2CBF',
     renderScreen: (ctx, w, h) => {
-      ctx.fillStyle = '#0D1B2A';
+      ctx.fillStyle = '#100B1A';
       ctx.fillRect(0, 0, w, h);
 
       // Status Bar
-      ctx.fillStyle = '#E0E1DD';
+      ctx.fillStyle = '#E9D5FF';
       ctx.font = 'bold 22px sans-serif';
       ctx.fillText('9:41', 36, 44);
-      ctx.fillText('5G  100%', w - 120, 44);
+      ctx.fillText('WiFi 6  100%', w - 140, 44);
 
-      // Header
-      ctx.fillStyle = '#00988A';
+      // Top Bar with Signature NNET Purple Theme
+      const gradHeader = ctx.createLinearGradient(24, 70, w - 24, 134);
+      gradHeader.addColorStop(0, '#6D28D9');
+      gradHeader.addColorStop(1, '#9333EA');
+      ctx.fillStyle = gradHeader;
       ctx.roundRect(24, 70, w - 48, 64, 16);
       ctx.fill();
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 26px sans-serif';
-      ctx.fillText('WiPray Global', 48, 112);
 
-      // Prayer Feed Card
-      ctx.fillStyle = '#1B263B';
-      ctx.roundRect(24, 150, w - 48, 260, 20);
+      // NNET Logo text
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '900 28px sans-serif';
+      ctx.fillText('NNET', 48, 114);
+      ctx.font = '16px sans-serif';
+      ctx.fillStyle = '#E9D5FF';
+      ctx.fillText('Customer Support', w - 195, 112);
+
+      // Account Status Card
+      ctx.fillStyle = '#1D132D';
+      ctx.roundRect(24, 150, w - 48, 230, 20);
       ctx.fill();
 
-      ctx.fillStyle = '#E0E1DD';
-      ctx.font = 'bold 22px sans-serif';
-      ctx.fillText('Prayer Wall · Community', 48, 195);
-      ctx.font = '18px sans-serif';
-      ctx.fillStyle = '#A0B2C6';
-      ctx.fillText('"Healing and strength for global healthcare', 48, 235);
-      ctx.fillText('workers and families in recovery."', 48, 265);
+      ctx.fillStyle = '#A855F7';
+      ctx.font = 'bold 24px sans-serif';
+      ctx.fillText('Fiber Pro 250 Mbps', 48, 195);
 
-      ctx.fillStyle = '#00988A';
-      ctx.roundRect(48, 300, 130, 40, 20);
+      ctx.fillStyle = '#D8B4FE';
+      ctx.font = '18px sans-serif';
+      ctx.fillText('ONU Router Status: ONLINE', 48, 230);
+      ctx.fillText('Plan Expiry: 28 Days Remaining', 48, 265);
+
+      // Quick action buttons inside card
+      ctx.fillStyle = '#7B2CBF';
+      ctx.roundRect(48, 300, 140, 44, 22);
       ctx.fill();
       ctx.fillStyle = '#FFFFFF';
       ctx.font = 'bold 16px sans-serif';
-      ctx.fillText('🙏 Pray (1.4k)', 65, 326);
+      ctx.fillText('Pay Bill', 85, 328);
 
-      ctx.fillStyle = '#415A77';
-      ctx.roundRect(190, 300, 130, 40, 20);
+      ctx.fillStyle = '#2E1065';
+      ctx.roundRect(205, 300, 160, 44, 22);
       ctx.fill();
-      ctx.fillStyle = '#FFFFFF';
-      ctx.fillText('💬 Amen (340)', 205, 326);
+      ctx.fillStyle = '#D8B4FE';
+      ctx.fillText('Router Restart', 230, 328);
 
-      // Now Playing Media Card
-      ctx.fillStyle = '#1B263B';
-      ctx.roundRect(24, 430, w - 48, 290, 20);
+      // Diagnostics & Speed Card
+      ctx.fillStyle = '#1D132D';
+      ctx.roundRect(24, 400, w - 48, 310, 20);
       ctx.fill();
-
-      ctx.fillStyle = '#00988A';
-      ctx.roundRect(48, 455, 100, 100, 16);
-      ctx.fill();
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 36px sans-serif';
-      ctx.fillText('▶', 85, 520);
 
       ctx.fillStyle = '#FFFFFF';
       ctx.font = 'bold 22px sans-serif';
-      ctx.fillText('Morning Meditation HLS', 165, 495);
-      ctx.font = '18px sans-serif';
-      ctx.fillStyle = '#A0B2C6';
-      ctx.fillText('ExoPlayer · Lossless Stream', 165, 530);
+      ctx.fillText('Optical Network Diagnostics', 48, 445);
 
-      // Progress bar
-      ctx.fillStyle = '#415A77';
-      ctx.roundRect(48, 580, w - 96, 8, 4);
-      ctx.fill();
-      ctx.fillStyle = '#00988A';
-      ctx.roundRect(48, 580, (w - 96) * 0.65, 8, 4);
-      ctx.fill();
+      // Gauge dial
+      ctx.beginPath();
+      ctx.arc(w / 2, 535, 70, Math.PI * 0.8, Math.PI * 2.2);
+      ctx.strokeStyle = '#2E1065';
+      ctx.lineWidth = 14;
+      ctx.stroke();
 
-      ctx.fillStyle = '#778DA9';
+      ctx.beginPath();
+      ctx.arc(w / 2, 535, 70, Math.PI * 0.8, Math.PI * 1.85);
+      ctx.strokeStyle = '#A855F7';
+      ctx.lineWidth = 14;
+      ctx.stroke();
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 36px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('248', w / 2, 542);
       ctx.font = '16px sans-serif';
-      ctx.fillText('14:20 / 22:00', 48, 620);
-      ctx.fillText('PiP Enabled', w - 150, 620);
+      ctx.fillStyle = '#C084FC';
+      ctx.fillText('Mbps Optical Speed', w / 2, 570);
+      ctx.textAlign = 'start';
 
-      // Bottom Bar
-      ctx.fillStyle = '#0D1B2A';
-      ctx.fillRect(0, h - 80, w, 80);
-      ctx.fillStyle = '#00988A';
+      // Live Ticket Support Button
+      ctx.fillStyle = '#7B2CBF';
+      ctx.roundRect(48, 640, w - 96, 44, 22);
+      ctx.fill();
+      ctx.fillStyle = '#FFFFFF';
       ctx.font = 'bold 18px sans-serif';
-      ctx.fillText('Feed', 50, h - 35);
-      ctx.fillStyle = '#778DA9';
-      ctx.fillText('Audio', 165, h - 35);
-      ctx.fillText('Praise', 285, h - 35);
+      ctx.textAlign = 'center';
+      ctx.fillText('Open Instant Support Ticket', w / 2, 668);
+      ctx.textAlign = 'start';
+
+      // Bottom Navigation Bar
+      ctx.fillStyle = '#0D0715';
+      ctx.fillRect(0, h - 80, w, 80);
+      ctx.fillStyle = '#A855F7';
+      ctx.font = 'bold 18px sans-serif';
+      ctx.fillText('Home', 45, h - 35);
+      ctx.fillStyle = '#C084FC';
+      ctx.fillText('Tickets', 160, h - 35);
+      ctx.fillText('Bills', 285, h - 35);
       ctx.fillText('Profile', 400, h - 35);
     },
   },
