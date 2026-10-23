@@ -12,7 +12,7 @@ const description =
   'Curriculum Vitae of Pashupati Chaudhary, Flutter Developer & Computer Engineering Graduate based in Kathmandu, Nepal. Experience, Education, and Skills.';
 
 const cvFilePath = path.join(process.cwd(), 'public', site.cvFile.replace(/^\//, ''));
-const hasPdf = fs.existsSync(cvFilePath) || fs.existsSync(path.join(process.cwd(), 'public', 'pashupati_cv.pdf'));
+const hasPdf = fs.existsSync(cvFilePath);
 ---
 
 <Base title={title} description={description}>
