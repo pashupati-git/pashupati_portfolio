@@ -11,141 +11,46 @@ export interface AppScreen {
 
 export const APPS: AppScreen[] = [
   {
-    id: 'totto',
-    name: 'Totto',
-    tagline: 'Buy & Sell Community Marketplace',
-    themeColor: '#E63946',
-    screenImage: '/screens/totto.png',
+    id: 'caro-tv',
+    name: 'Caro TV',
+    tagline: 'Live IPTV & Streaming Player',
+    themeColor: '#E11D48',
+    screenImage: '/screens/caro-tv.png',
     renderScreen: (ctx, w, h) => {
-      ctx.fillStyle = '#0F172A';
+      ctx.fillStyle = '#05140B';
       ctx.fillRect(0, 0, w, h);
 
-      // Status Bar
-      ctx.fillStyle = '#94A3B8';
+      ctx.fillStyle = '#86EFAC';
       ctx.font = 'bold 30px sans-serif';
-      ctx.fillText('9:41', 48, 64);
+      ctx.fillText('2:55 PM', 48, 64);
       ctx.fillText('5G  100%', w - 180, 64);
 
-      // Header
-      ctx.fillStyle = '#1E293B';
-      ctx.roundRect(32, 100, w - 64, 88, 20);
+      // Banner
+      const tvGrad = ctx.createLinearGradient(32, 100, w - 32, 340);
+      tvGrad.addColorStop(0, '#13753D');
+      tvGrad.addColorStop(1, '#052E16');
+      ctx.fillStyle = tvGrad;
+      ctx.roundRect(32, 100, w - 64, 240, 24);
       ctx.fill();
 
       ctx.fillStyle = '#FFFFFF';
       ctx.font = 'bold 38px sans-serif';
-      ctx.fillText('totto', 64, 158);
-
-      ctx.fillStyle = '#E63946';
-      ctx.beginPath();
-      ctx.arc(110, 126, 6, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(134, 126, 6, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Search
-      ctx.fillStyle = '#334155';
-      ctx.roundRect(32, 210, w - 64, 72, 16);
-      ctx.fill();
-      ctx.fillStyle = '#94A3B8';
-      ctx.font = '26px sans-serif';
-      ctx.fillText('Search Chat Bazaar, electronics...', 64, 255);
-
-      // Banner
-      const grad = ctx.createLinearGradient(32, 310, w - 32, 520);
-      grad.addColorStop(0, '#E63946');
-      grad.addColorStop(1, '#FF6B6B');
-      ctx.fillStyle = grad;
-      ctx.roundRect(32, 310, w - 64, 220, 24);
-      ctx.fill();
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 36px sans-serif';
-      ctx.fillText('Chat, Negotiate, Connect', 64, 380);
-      ctx.font = '26px sans-serif';
-      ctx.fillText('Direct local deals in Kathmandu', 64, 430);
-
-      // Chat Tiers
-      const tiers = [
-        { name: 'Essential Tier', role: 'Free Community' },
-        { name: 'Standard Tier', role: 'Verified Traders' },
-        { name: 'Premium Tier', role: 'Priority Listings' },
-      ];
-
-      tiers.forEach((tier, i) => {
-        const y = 560 + i * 110;
-        ctx.fillStyle = '#1E293B';
-        ctx.roundRect(32, y, w - 64, 90, 18);
-        ctx.fill();
-        ctx.fillStyle = '#F8FAFC';
-        ctx.font = 'bold 28px sans-serif';
-        ctx.fillText(tier.name, 64, y + 45);
-        ctx.fillStyle = '#94A3B8';
-        ctx.font = '22px sans-serif';
-        ctx.fillText(tier.role, 64, y + 75);
-      });
-    },
-  },
-  {
-    id: 'nnet',
-    name: 'NNET',
-    tagline: 'Customer Support & Diagnostics App',
-    themeColor: '#7B2CBF',
-    screenImage: '/screens/nnet.png',
-    renderScreen: (ctx, w, h) => {
-      ctx.fillStyle = '#100B1A';
-      ctx.fillRect(0, 0, w, h);
-
-      ctx.fillStyle = '#E9D5FF';
-      ctx.font = 'bold 30px sans-serif';
-      ctx.fillText('9:41', 48, 64);
-      ctx.fillText('WiFi 6  100%', w - 210, 64);
-
-      // Header
-      const gradHeader = ctx.createLinearGradient(32, 100, w - 32, 190);
-      gradHeader.addColorStop(0, '#6D28D9');
-      gradHeader.addColorStop(1, '#9333EA');
-      ctx.fillStyle = gradHeader;
-      ctx.roundRect(32, 100, w - 64, 90, 20);
-      ctx.fill();
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = '900 38px sans-serif';
-      ctx.fillText('NNET', 64, 160);
-      ctx.font = '22px sans-serif';
-      ctx.fillStyle = '#E9D5FF';
-      ctx.fillText('Broadband Customer Support', w - 380, 158);
-
-      // Action Grid
-      const items = ['Internet', 'IP TV', 'Router', 'Payment', 'Support', 'Refer'];
-      items.forEach((item, i) => {
-        const col = i % 3;
-        const row = Math.floor(i / 3);
-        const bx = 32 + col * ((w - 64) / 3);
-        const by = 220 + row * 130;
-        ctx.fillStyle = '#1D132D';
-        ctx.roundRect(bx + 6, by, (w - 64) / 3 - 12, 115, 16);
-        ctx.fill();
-        ctx.fillStyle = '#C084FC';
-        ctx.font = 'bold 24px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(item, bx + (w - 64) / 6, by + 70);
-        ctx.textAlign = 'start';
-      });
-
-      // Banner
-      const cardGrad = ctx.createLinearGradient(32, 510, w - 32, 720);
-      cardGrad.addColorStop(0, '#3B0764');
-      cardGrad.addColorStop(1, '#6B21A8');
-      ctx.fillStyle = cardGrad;
-      ctx.roundRect(32, 510, w - 64, 210, 24);
-      ctx.fill();
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 34px sans-serif';
-      ctx.fillText('Fiber NNET Always Connected', 64, 590);
+      ctx.fillText('FOOTBALL FEVER', 64, 180);
       ctx.font = '24px sans-serif';
-      ctx.fillStyle = '#E9D5FF';
-      ctx.fillText('High-speed fiber & automated diagnostics', 64, 640);
+      ctx.fillStyle = '#86EFAC';
+      ctx.fillText('Live TV & Streaming Channels', 64, 230);
+
+      // Channel List
+      const channels = ['Nepal Television HD', 'NTV News HD', 'NTV Plus HD'];
+      channels.forEach((ch, idx) => {
+        const cy = 370 + idx * 100;
+        ctx.fillStyle = '#0F3820';
+        ctx.roundRect(32, cy, w - 64, 80, 18);
+        ctx.fill();
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 26px sans-serif';
+        ctx.fillText(ch, 64, cy + 50);
+      });
     },
   },
   {
@@ -249,6 +154,68 @@ export const APPS: AppScreen[] = [
     },
   },
   {
+    id: 'nnet',
+    name: 'NNET',
+    tagline: 'Customer Support & Diagnostics App',
+    themeColor: '#7B2CBF',
+    screenImage: '/screens/nnet.png',
+    renderScreen: (ctx, w, h) => {
+      ctx.fillStyle = '#100B1A';
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.fillStyle = '#E9D5FF';
+      ctx.font = 'bold 30px sans-serif';
+      ctx.fillText('9:41', 48, 64);
+      ctx.fillText('WiFi 6  100%', w - 210, 64);
+
+      // Header
+      const gradHeader = ctx.createLinearGradient(32, 100, w - 32, 190);
+      gradHeader.addColorStop(0, '#6D28D9');
+      gradHeader.addColorStop(1, '#9333EA');
+      ctx.fillStyle = gradHeader;
+      ctx.roundRect(32, 100, w - 64, 90, 20);
+      ctx.fill();
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '900 38px sans-serif';
+      ctx.fillText('NNET', 64, 160);
+      ctx.font = '22px sans-serif';
+      ctx.fillStyle = '#E9D5FF';
+      ctx.fillText('Broadband Customer Support', w - 380, 158);
+
+      // Action Grid
+      const items = ['Internet', 'IP TV', 'Router', 'Payment', 'Support', 'Refer'];
+      items.forEach((item, i) => {
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        const bx = 32 + col * ((w - 64) / 3);
+        const by = 220 + row * 130;
+        ctx.fillStyle = '#1D132D';
+        ctx.roundRect(bx + 6, by, (w - 64) / 3 - 12, 115, 16);
+        ctx.fill();
+        ctx.fillStyle = '#C084FC';
+        ctx.font = 'bold 24px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(item, bx + (w - 64) / 6, by + 70);
+        ctx.textAlign = 'start';
+      });
+
+      // Banner
+      const cardGrad = ctx.createLinearGradient(32, 510, w - 32, 720);
+      cardGrad.addColorStop(0, '#3B0764');
+      cardGrad.addColorStop(1, '#6B21A8');
+      ctx.fillStyle = cardGrad;
+      ctx.roundRect(32, 510, w - 64, 210, 24);
+      ctx.fill();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 34px sans-serif';
+      ctx.fillText('Fiber NNET Always Connected', 64, 590);
+      ctx.font = '24px sans-serif';
+      ctx.fillStyle = '#E9D5FF';
+      ctx.fillText('High-speed fiber & automated diagnostics', 64, 640);
+    },
+  },
+  {
     id: 'dealer-partner',
     name: 'Dealer Partner',
     tagline: 'Referral & Commission Payout Platform',
@@ -297,45 +264,78 @@ export const APPS: AppScreen[] = [
     },
   },
   {
-    id: 'caro-tv',
-    name: 'Caro TV',
-    tagline: 'Live IPTV & Streaming Player',
-    themeColor: '#E11D48',
-    screenImage: '/screens/caro-tv.png',
+    id: 'totto',
+    name: 'Totto',
+    tagline: 'Buy & Sell Community Marketplace',
+    themeColor: '#E63946',
+    screenImage: '/screens/totto.png',
     renderScreen: (ctx, w, h) => {
-      ctx.fillStyle = '#05140B';
+      ctx.fillStyle = '#0F172A';
       ctx.fillRect(0, 0, w, h);
 
-      ctx.fillStyle = '#86EFAC';
+      // Status Bar
+      ctx.fillStyle = '#94A3B8';
       ctx.font = 'bold 30px sans-serif';
-      ctx.fillText('2:55 PM', 48, 64);
+      ctx.fillText('9:41', 48, 64);
       ctx.fillText('5G  100%', w - 180, 64);
 
-      // Banner
-      const tvGrad = ctx.createLinearGradient(32, 100, w - 32, 340);
-      tvGrad.addColorStop(0, '#13753D');
-      tvGrad.addColorStop(1, '#052E16');
-      ctx.fillStyle = tvGrad;
-      ctx.roundRect(32, 100, w - 64, 240, 24);
+      // Header
+      ctx.fillStyle = '#1E293B';
+      ctx.roundRect(32, 100, w - 64, 88, 20);
       ctx.fill();
 
       ctx.fillStyle = '#FFFFFF';
       ctx.font = 'bold 38px sans-serif';
-      ctx.fillText('FOOTBALL FEVER', 64, 180);
-      ctx.font = '24px sans-serif';
-      ctx.fillStyle = '#86EFAC';
-      ctx.fillText('Live TV & Streaming Channels', 64, 230);
+      ctx.fillText('totto', 64, 158);
 
-      // Channel List
-      const channels = ['Nepal Television HD', 'NTV News HD', 'NTV Plus HD'];
-      channels.forEach((ch, idx) => {
-        const cy = 370 + idx * 100;
-        ctx.fillStyle = '#0F3820';
-        ctx.roundRect(32, cy, w - 64, 80, 18);
+      ctx.fillStyle = '#E63946';
+      ctx.beginPath();
+      ctx.arc(110, 126, 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(134, 126, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Search
+      ctx.fillStyle = '#334155';
+      ctx.roundRect(32, 210, w - 64, 72, 16);
+      ctx.fill();
+      ctx.fillStyle = '#94A3B8';
+      ctx.font = '26px sans-serif';
+      ctx.fillText('Search Chat Bazaar, electronics...', 64, 255);
+
+      // Banner
+      const grad = ctx.createLinearGradient(32, 310, w - 32, 520);
+      grad.addColorStop(0, '#E63946');
+      grad.addColorStop(1, '#FF6B6B');
+      ctx.fillStyle = grad;
+      ctx.roundRect(32, 310, w - 64, 220, 24);
+      ctx.fill();
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 36px sans-serif';
+      ctx.fillText('Chat, Negotiate, Connect', 64, 380);
+      ctx.font = '26px sans-serif';
+      ctx.fillText('Direct local deals in Kathmandu', 64, 430);
+
+      // Chat Tiers
+      const tiers = [
+        { name: 'Essential Tier', role: 'Free Community' },
+        { name: 'Standard Tier', role: 'Verified Traders' },
+        { name: 'Premium Tier', role: 'Priority Listings' },
+      ];
+
+      tiers.forEach((tier, i) => {
+        const y = 560 + i * 110;
+        ctx.fillStyle = '#1E293B';
+        ctx.roundRect(32, y, w - 64, 90, 18);
         ctx.fill();
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = 'bold 26px sans-serif';
-        ctx.fillText(ch, 64, cy + 50);
+        ctx.fillStyle = '#F8FAFC';
+        ctx.font = 'bold 28px sans-serif';
+        ctx.fillText(tier.name, 64, y + 45);
+        ctx.fillStyle = '#94A3B8';
+        ctx.font = '22px sans-serif';
+        ctx.fillText(tier.role, 64, y + 75);
       });
     },
   },
