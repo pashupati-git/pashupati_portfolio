@@ -71,11 +71,12 @@ const hasPdf = fs.existsSync(cvFilePath);
     <Section id="cv-summary" tag="Profile" heading="Professional Summary">
       <div class="card" data-reveal style="--i:2">
         <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary);">
-          Computer Engineering graduate with hands-on experience in Flutter application development. Currently working as a
-          Flutter Intern at MindRisers Institute of Technology, contributing to real-world mobile applications using Clean
-          Architecture, MVVM, and Riverpod state management. Skilled in building scalable, localized, and high-performance
-          applications based on Figma UI designs, integrating REST APIs, Firebase services, and Hive for offline storage.
-          Passionate about writing clean, maintainable code and continuously learning modern mobile development practices.
+          Computer Engineering graduate and Mobile Application Developer currently working full-time at <strong style="color: var(--text-main);">Classic Tech</strong>,
+          engineering mission-critical Flutter applications across an ecosystem of 110,000+ installs (including the flagship
+          Classic Tech Customer App, Classic Engine field operations, Dealer Partner, and Caro TV). Experienced in Clean Architecture,
+          Riverpod, and MVVM state management, transforming Figma designs into fluid 60fps mobile interfaces,
+          integrating payment gateways, real-time diagnostics, REST APIs, and offline-first Hive caching.
+          Passionate about building scalable, production-grade mobile experiences with clean, maintainable code.
         </p>
       </div>
     </Section>
@@ -86,7 +87,16 @@ const hasPdf = fs.existsSync(cvFilePath);
         {experience.map((job, idx) => (
           <Entry title={job.role} meta={job.period} index={idx}>
             <Fragment slot="org">
-              <a href={job.companyUrl} target="_blank" rel="noopener">{job.company}</a> — {job.place}
+              <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                <a href={job.companyUrl} target="_blank" rel="noopener" style="color: var(--text-main); font-weight: 600;">{job.company}</a>
+                {job.type && (
+                  <span style="display: inline-block; padding: 0.15rem 0.6rem; font-size: 0.75rem; font-family: var(--font-mono); font-weight: 600; border-radius: 999px; background: rgba(0, 229, 255, 0.12); color: var(--primary); border: 1px solid rgba(0, 229, 255, 0.3);">
+                    {job.type}
+                  </span>
+                )}
+                <span style="color: var(--border-glow);">·</span>
+                <span style="color: var(--text-muted); font-size: 0.88rem;">{job.place}</span>
+              </div>
             </Fragment>
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.75rem;">
               {job.bullets.map((bullet) => (

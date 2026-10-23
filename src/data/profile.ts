@@ -29,7 +29,7 @@ export const nav = [
 
 export const summary = [
   'Computer Engineering graduate from Nepal Engineering College with hands-on expertise in production-ready Flutter and cross-platform mobile development.',
-  'Currently working as a Flutter Intern at MindRisers Institute of Technology, architecting scalable mobile applications using Clean Architecture, MVVM, and Riverpod state management.',
+  'Currently working as a Mobile Application Developer at Classic Tech, architecting and maintaining production applications for Nepal’s leading ISP ecosystem across 110,000+ installs.',
   'Passionate about transforming complex Figma UI/UX designs into pixel-perfect Flutter interfaces, integrating robust REST APIs, Firebase ecosystems, and offline-first Hive caching.',
 ];
 
@@ -37,6 +37,7 @@ export type Experience = {
   role: string;
   company: string;
   companyUrl?: string;
+  type?: string;
   place: string;
   period: string;
   bullets: string[];
@@ -44,20 +45,33 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    role: 'Flutter Developer Intern',
+    role: 'Mobile Application Developer',
+    company: 'Classic Tech',
+    companyUrl: 'https://classic.com.np',
+    type: 'Full-time',
+    place: 'New Baneshwor, Kathmandu, Nepal',
+    period: 'Mar 2026 to Present',
+    bullets: [
+      'Serving as Mobile Application Developer architecting, scaling, and maintaining mission-critical Flutter applications for Nepal’s premier broadband ISP.',
+      'Developing and releasing core modules across flagship products: Classic Tech Customer App (100k+ downloads), Classic Engine field operations, Dealer Partner, and Caro TV Nepal.',
+      'Engineered digital billing renewals, online payment gateways, optical router signal diagnostics, and real-time support ticket resolution.',
+      'Implemented robust offline task caching, GPS-based work order routing for field technicians, and biometric authentication for dealer payouts.',
+      'Collaborating closely with cross-functional network infrastructure, UX design, and backend engineering teams to ensure high reliability and 60fps mobile performance.',
+    ],
+  },
+  {
+    role: 'Flutter Developer',
     company: 'MindRisers Institute of Technology',
     companyUrl: 'https://mindrisers.com.np',
-    place: 'Kathmandu, Nepal',
-    period: '2025 to Present',
+    type: 'Internship',
+    place: 'Kathmandu, Bagmati, Nepal',
+    period: 'Sep 2025 to Feb 2026',
     bullets: [
-      'Developing production-ready Flutter applications following Clean Architecture and MVVM design patterns.',
-      'Implemented robust state management using Riverpod for scalable, testable, and reactive application logic.',
-      'Built multi-language support (English & Nepali) using Flutter internationalization & localization.',
-      'Converted complex Figma UI/UX designs into pixel-perfect, responsive Flutter mobile interfaces.',
-      'Integrated RESTful APIs, error handling interceptors, and dynamic business logic.',
-      'Worked with Firebase Authentication, Cloud Firestore, and Cloud Storage for realtime synchronization.',
-      'Implemented Hive local database for offline data persistence, fast key-value caching, and background sync.',
-      'Collaborated in Agile sprints using Git/GitHub for branch management, PR code reviews, and clean code standards.',
+      'Developed cross-platform mobile applications from Figma UI prototypes adhering to Clean Architecture and MVVM design patterns.',
+      'Engineered reactive state management solutions using Riverpod, isolating UI widgets from domain and data layers.',
+      'Implemented bilingual localization (English & Nepali) and converted complex design systems into responsive mobile interfaces.',
+      'Integrated Firebase services (Auth, Firestore, Cloud Storage), REST APIs with Dio interceptors, and Hive local storage for offline persistence.',
+      'Practiced disciplined Git workflows, agile sprint rituals, peer code reviews, and clean code standards.',
     ],
   },
 ];
