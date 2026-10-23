@@ -1,0 +1,21 @@
+---
+interface Props {
+  title: string;
+  meta: string;
+  index?: number;
+}
+
+const { title, meta, index = 0 } = Astro.props;
+---
+
+<div class="timeline-item" data-reveal style={`--i:${Math.min(index, 4)}`}>
+  <div class="timeline-dot"></div>
+  <div class="timeline-meta">{meta}</div>
+  <h3 class="timeline-role">{title}</h3>
+  <div class="timeline-org">
+    <slot name="org" />
+  </div>
+  <div class="timeline-content" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+    <slot />
+  </div>
+</div>

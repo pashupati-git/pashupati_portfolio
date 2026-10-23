@@ -1,0 +1,18 @@
+---
+interface Props {
+  value: string;
+}
+
+const { value } = Astro.props;
+---
+
+<div class="container" data-reveal style="--i:3">
+  <div class="card" style="margin: 2rem 0; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+    <div style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 900; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; flex-shrink: 0;">
+      {value}
+    </div>
+    <div style="font-size: 1.1rem; line-height: 1.6; color: var(--text-secondary); max-width: 65ch;">
+      <slot />
+    </div>
+  </div>
+</div>

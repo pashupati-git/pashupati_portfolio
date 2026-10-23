@@ -1,0 +1,61 @@
+---
+import type { Project } from '../data/profile';
+
+interface Props {
+  project: Project;
+  compact?: boolean;
+  index?: number;
+}
+
+const { project, compact = false, index = 0 } = Astro.props;
+---
+
+<article class="card" data-reveal style={`--i:${Math.min(index, 4)}; margin-bottom: 1.5rem;`}>
+  <div style="display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
+    <div class="project-icon-box" style={project.color ? `border-color: ${project.color}40; box-shadow: 0 0 15px ${project.color}25` : ''}>
+      {project.icon ? (
+        <img src={project.icon} alt={project.name} width="52" height="52" loading="lazy" />
+      ) : (
+        <div style={`width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; color: #fff; background: ${project.color || 'var(--accent-gradient)'}`}>
+          {project.name.slice(0, 2).toUpperCase()}
+        </div>
+      )}
+    </div>
+
+    <div style="flex: 1; min-width: 260px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.35rem;">
+        <h3 style="font-size: 1.3rem;">{project.name}</h3>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          {project.installs && (
+            <span class="project-badge" style="color: var(--primary);">{project.installs}</span>
+          )}
+          <span style="font-size: 0.8rem; font-family: var(--font-mono); color: var(--text-muted);">{project.period}</span>
+        </div>
+      </div>
+
+      <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+        <strong>{project.headline}</strong> · <span style="color: var(--text-muted);">{project.context}</span>
+      </p>
+
+      <div class="project-stack" style="margin: 0.5rem 0 1rem;">
+        {project.stack.map((tech) => (
+          <span class="tech-tag">{tech}</span>
+        ))}
+      </div>
+
+      <ul class="project-bullets">
+        {project.bullets.slice(0, compact ? 2 : project.bullets.length).map((b) => (
+          <li>{b}</li>
+        ))}
+      </ul>
+
+      {project.link && (
+        <div style="margin-top: 1rem;">
+          <a href={project.link.url} target="_blank" rel="noopener" class="link-arrow">
+            {project.link.label} <span class="arrow">↗</span>
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</article>

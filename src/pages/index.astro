@@ -1,0 +1,153 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Phone3D from '../components/Phone3D.astro';
+import Section from '../components/Section.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { site, projects, experience, services, playListings } from '../data/profile';
+
+const featuredProjects = projects.filter((p) => p.featured);
+const currentRole = experience[0];
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.name,
+  url: site.url,
+  description: site.description,
+};
+---
+
+<Base schema={websiteSchema}>
+  <!-- Hero Section with 3D Smartphone Centerpiece -->
+  <Hero
+    eyebrow="Flutter Developer · Mobile Engineering"
+    title="Pashupati Chaudhary."
+    accent="Crafting high-performance mobile apps."
+    lede="Computer Engineering graduate & Flutter Engineer in Kathmandu. Building production-grade Android & iOS applications using Clean Architecture, Riverpod, offline-first local caching, and real-time backend integrations."
+  >
+    <Fragment slot="actions">
+      <a class="btn" href="/work/">
+        Explore Work
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a class="btn btn-secondary" href="/cv/">
+        View Full CV
+      </a>
+      <a class="btn btn-ghost" href={`mailto:${site.email}`}>
+        Email Me
+      </a>
+    </Fragment>
+
+    <div slot="media">
+      <Phone3D />
+    </div>
+
+    <!-- On Google Play App Badges -->
+    <div style="margin-top: 2rem;" data-reveal style="--i:4">
+      <p style="font-size: 0.82rem; font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+        Contributed to Apps on Google Play
+      </p>
+      <div style="display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap;">
+        {playListings.map((app) => (
+          <a href={app.url} target="_blank" rel="noopener" title={app.name} class="project-icon-box" style="width: 44px; height: 44px; transition: transform 0.2s ease;">
+            <img src={app.icon} alt={app.name} width="44" height="44" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </Hero>
+
+  <!-- Impact Stat Figure Banner -->
+  <div class="container" data-reveal style="--i:1">
+    <div class="stats-banner">
+      <div class="stat-item">
+        <div class="stat-num">110K+</div>
+        <div class="stat-label">Google Play Installs across ISP & enterprise apps</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Mobile & Web Applications engineered & contributed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Clean Architecture, MVVM & Riverpod state isolation</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Projects Grid -->
+  <Section id="projects" tag="Portfolio" heading="Featured Projects" description="Mobile and fullstack applications built from concept to deployment.">
+    <div slot="header-actions">
+      <a href="/work/" class="link-arrow">
+        Browse all {projects.length} projects <span class="arrow">›</span>
+      </a>
+    </div>
+
+    <div class="projects-grid">
+      {featuredProjects.map((project, index) => (
+        <ProjectCard project={project} index={index} />
+      ))}
+    </div>
+  </Section>
+
+  <!-- Profile Spotlight Card with photo main.jpeg -->
+  <div class="container" style="margin: 2rem auto;" data-reveal style="--i:2">
+    <div class="card" style="display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap; background: linear-gradient(135deg, rgba(20, 24, 36, 0.8) 0%, rgba(10, 14, 22, 0.95) 100%);">
+      <div style="width: 140px; height: 140px; border-radius: 28px; overflow: hidden; border: 2px solid var(--border-glow); box-shadow: 0 0 25px var(--primary-glow); flex-shrink: 0;">
+        <img src={site.photo} alt={site.name} style="width: 100%; height: 100%; object-fit: cover;" />
+      </div>
+      <div style="flex: 1; min-width: 280px;">
+        <span class="hero-eyebrow" style="margin-bottom: 0.5rem;">
+          <span class="pulse-dot"></span>
+          <span>Currently at {currentRole.company}</span>
+        </span>
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">{site.name}</h3>
+        <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          {currentRole.bullets[0]} {currentRole.bullets[1]}
+        </p>
+        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+          <a href="/about/" class="link-arrow">Read full background <span class="arrow">›</span></a>
+          <a href="/cv/" class="link-arrow">Inspect CV <span class="arrow">›</span></a>
+          <a href={site.whatsapp.url} target="_blank" rel="noopener" class="link-arrow">Quick WhatsApp <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- What I Take On / Services Grid -->
+  <Section id="services" tag="Expertise" heading="What I Take On" tone="soft" description="Specialized mobile engineering capabilities I bring to product teams.">
+    <div class="services-grid">
+      {services.map((service, i) => (
+        <div class="card service-card" data-reveal style={`--i:${Math.min(i, 4)}`}>
+          <div class="service-icon">{service.icon}</div>
+          <h3 style="font-size: 1.25rem;">{service.title}</h3>
+          <p style="font-size: 0.95rem; line-height: 1.6;">{service.body}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Education & Journey Quick Overview -->
+  <Section id="journey" tag="Foundations" heading="Academic & Engineering Foundation">
+    <div class="card" data-reveal style="--i:1">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--primary);">2021 — 2025</span>
+          <h3 style="font-size: 1.35rem; margin-top: 0.25rem;">Bachelor in Computer Engineering</h3>
+          <p style="color: var(--text-secondary); margin-top: 0.35rem;">
+            Nepal Engineering College (Affiliated with Pokhara University), Changunarayan, Bhaktapur.
+          </p>
+        </div>
+        <a href="/about/#education" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+          View All Degrees
+        </a>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-secondary); border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+        Solid grounding in Data Structures, Algorithms, Object-Oriented Software Design, Operating Systems, Computer Networks, and Machine Learning. Transitioned from C++ and Java into MERN web development and production Flutter engineering.
+      </p>
+    </div>
+  </Section>
+</Base>

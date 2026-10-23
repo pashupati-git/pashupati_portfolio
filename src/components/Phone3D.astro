@@ -1,0 +1,62 @@
+---
+// Phone3D.astro - Interactive 3D Smartphone component powered by Three.js
+---
+
+<div class="phone-showcase-container" data-reveal style="--i:2">
+  <div class="phone-canvas-wrap" id="phone3d-canvas-container" title="Drag to rotate in 3D">
+    <!-- WebGL Canvas will be injected here -->
+  </div>
+
+  <div class="app-selector-pills" id="app-pills">
+    <button class="app-pill active" type="button" data-app-index="0">Totto (Marketplace)</button>
+    <button class="app-pill" type="button" data-app-index="1">LeafCare (AI Scanner)</button>
+    <button class="app-pill" type="button" data-app-index="2">WiPray (Media)</button>
+    <button class="app-pill" type="button" data-app-index="3">Classic Tech (ISP)</button>
+  </div>
+
+  <p class="phone-hint">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+    </svg>
+    Click pills to switch live Flutter apps · Drag to rotate in 3D
+  </p>
+</div>
+
+<script>
+  import { Phone3DShowcase } from '../scripts/phone3d';
+
+  let showcase: Phone3DShowcase | null = null;
+
+  function initPhone() {
+    const container = document.getElementById('phone3d-canvas-container');
+    if (!container) return;
+
+    // Clean up any existing instances
+    if (showcase) {
+      showcase.destroy();
+      showcase = null;
+    }
+    container.innerHTML = '';
+
+    showcase = new Phone3DShowcase(container);
+
+    // App Switcher pill interaction
+    const pills = document.querySelectorAll<HTMLButtonElement>('.app-pill');
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        pills.forEach((p) => p.classList.remove('active'));
+        pill.classList.add('active');
+        const index = parseInt(pill.dataset.appIndex || '0', 10);
+        showcase?.updateScreen(index);
+      });
+    });
+  }
+
+  // Handle Astro page load / transition
+  document.addEventListener('astro:page-load', initPhone);
+  if (document.readyState !== 'loading') {
+    initPhone();
+  } else {
+    document.addEventListener('DOMContentLoaded', initPhone);
+  }
+</script>

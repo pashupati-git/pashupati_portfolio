@@ -1,0 +1,167 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Figure from '../components/Figure.astro';
+import Section from '../components/Section.astro';
+import { site } from '../data/profile';
+
+const title = 'Contact';
+const description =
+  'Contact Pashupati Chaudhary, Flutter Developer & Mobile Application Engineer in Kathmandu, Nepal. Direct email, WhatsApp, phone, LinkedIn, and GitHub.';
+---
+
+<Base title={title} description={description}>
+  <Hero
+    small
+    eyebrow="Get In Touch"
+    title="Let’s Build Together."
+    accent="Open to mobile engineering opportunities."
+    lede={`Based in ${site.location} (UTC+5:45). Ready to collaborate on production Flutter mobile apps, state architecture refactoring, and new cross-platform ventures.`}
+  >
+    <Fragment slot="actions">
+      <a class="btn" href={`mailto:${site.email}`}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Send Email
+      </a>
+      <button class="btn btn-secondary copy-email-btn" type="button" data-copy={site.email}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        <span class="copy-label">Copy {site.email}</span>
+      </button>
+      <a class="btn btn-ghost" href={site.whatsapp.url} target="_blank" rel="noopener">
+        Chat on WhatsApp
+      </a>
+    </Fragment>
+  </Hero>
+
+  <Figure value="UTC+5:45">
+    Kathmandu time zone. Overlapping seamlessly with European afternoons, Asian business hours, and US morning syncs.
+  </Figure>
+
+  <div class="container container-narrow" style="margin-top: 1rem;">
+    <!-- Direct Channels Cards Grid -->
+    <Section id="channels" tag="Direct Channels" heading="Communication Channels">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+        <!-- Email Card -->
+        <div class="card" data-reveal style="--i:0">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">✉️</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.25rem;">Email Address</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-secondary);">Direct inbox for opportunities, projects, and queries.</p>
+          <a href={`mailto:${site.email}`} class="link-arrow" style="word-break: break-all;">
+            {site.email} <span class="arrow">›</span>
+          </a>
+        </div>
+
+        <!-- WhatsApp Card -->
+        <div class="card" data-reveal style="--i:1">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">💬</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.25rem;">WhatsApp & Phone</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-secondary);">Fast direct messaging and voice calls.</p>
+          <a href={site.whatsapp.url} target="_blank" rel="noopener" class="link-arrow">
+            {site.phone} <span class="arrow">↗</span>
+          </a>
+        </div>
+
+        <!-- LinkedIn Card -->
+        <div class="card" data-reveal style="--i:2">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">💼</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.25rem;">LinkedIn</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-secondary);">Professional network, endorsements, and updates.</p>
+          <a href={site.links.linkedin} target="_blank" rel="noopener" class="link-arrow">
+            Connect on LinkedIn <span class="arrow">↗</span>
+          </a>
+        </div>
+
+        <!-- GitHub Card -->
+        <div class="card" data-reveal style="--i:3">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🐙</div>
+          <h3 style="font-size: 1.15rem; margin-bottom: 0.25rem;">GitHub</h3>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-secondary);">Public repositories, mobile code samples, and contributions.</p>
+          <a href={site.links.github} target="_blank" rel="noopener" class="link-arrow">
+            github.com/pashupati-git <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </Section>
+
+    <!-- Quick Message Composer Box -->
+    <Section id="quick-inquiry" tag="Message" heading="Start a Project Discussion" tone="soft">
+      <div class="card" data-reveal style="--i:1">
+        <form id="contact-form" action={`mailto:${site.email}`} method="GET" style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div>
+            <label for="subject" style="display: block; font-size: 0.88rem; font-family: var(--font-mono); color: var(--primary); margin-bottom: 0.4rem;">
+              Subject / Topic
+            </label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="e.g. Flutter Mobile Project Inquiry"
+              style="width: 100%; padding: 0.85rem 1.1rem; border-radius: var(--radius-sm); background: var(--bg-surface); border: 1px solid var(--border-medium); color: var(--text-main); font-family: var(--font-body); font-size: 0.95rem;"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="body" style="display: block; font-size: 0.88rem; font-family: var(--font-mono); color: var(--primary); margin-bottom: 0.4rem;">
+              Project Scope or Message
+            </label>
+            <textarea
+              id="body"
+              name="body"
+              rows="5"
+              placeholder="Share details about your app idea, platform requirements (Android/iOS), timeline, or team role..."
+              style="width: 100%; padding: 0.85rem 1.1rem; border-radius: var(--radius-sm); background: var(--bg-surface); border: 1px solid var(--border-medium); color: var(--text-main); font-family: var(--font-body); font-size: 0.95rem; resize: vertical;"
+              required
+            ></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button class="btn" type="submit">
+              Open in Email Client
+              <span class="arrow">›</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </Section>
+  </div>
+</Base>
+
+<script>
+  function initContactCopy() {
+    const copyBtns = document.querySelectorAll<HTMLButtonElement>('.copy-email-btn');
+
+    copyBtns.forEach((btn) => {
+      const email = btn.dataset.copy || '';
+      const label = btn.querySelector('.copy-label');
+
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(email);
+          if (label) {
+            const originalText = label.textContent;
+            label.textContent = 'Copied to Clipboard!';
+            setTimeout(() => {
+              label.textContent = originalText;
+            }, 2000);
+          }
+        } catch (err) {
+          window.location.href = `mailto:${email}`;
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initContactCopy);
+  if (document.readyState !== 'loading') {
+    initContactCopy();
+  } else {
+    document.addEventListener('DOMContentLoaded', initContactCopy);
+  }
+</script>

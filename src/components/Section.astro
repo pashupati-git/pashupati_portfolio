@@ -1,0 +1,27 @@
+---
+interface Props {
+  id?: string;
+  heading?: string;
+  tag?: string;
+  description?: string;
+  tone?: 'default' | 'soft';
+}
+
+const { id, heading, tag, description, tone = 'default' } = Astro.props;
+---
+
+<section id={id} class={`section ${tone === 'soft' ? 'section-soft' : ''}`}>
+  <div class="container">
+    {heading && (
+      <div class="section-head" data-reveal style="--i:0">
+        <div>
+          {tag && <span class="section-tag">{tag}</span>}
+          <h2>{heading}</h2>
+          {description && <p style="margin-top: 0.5rem;">{description}</p>}
+        </div>
+        <slot name="header-actions" />
+      </div>
+    )}
+    <slot />
+  </div>
+</section>

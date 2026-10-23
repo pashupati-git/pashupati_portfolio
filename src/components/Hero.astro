@@ -1,0 +1,58 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  accent?: string;
+  lede?: string;
+  small?: boolean;
+}
+
+const { eyebrow, title, accent, lede, small = false } = Astro.props;
+---
+
+<section class={`hero-section ${small ? 'hero-small' : ''}`}>
+  <div class="container">
+    {small ? (
+      <div class="hero-content container-narrow" style="padding: 0;">
+        {eyebrow && (
+          <div class="hero-eyebrow" data-reveal style="--i:0">
+            <span class="pulse-dot"></span>
+            <span>{eyebrow}</span>
+          </div>
+        )}
+        <h1 class="hero-title" data-reveal style="--i:1">
+          {title}
+          {accent && <span class="hero-accent">{accent}</span>}
+        </h1>
+        {lede && <p class="hero-lead" data-reveal style="--i:2">{lede}</p>}
+        <div class="hero-actions" data-reveal style="--i:3">
+          <slot name="actions" />
+        </div>
+      </div>
+    ) : (
+      <div class="hero-grid">
+        <div class="hero-text">
+          {eyebrow && (
+            <div class="hero-eyebrow" data-reveal style="--i:0">
+              <span class="pulse-dot"></span>
+              <span>{eyebrow}</span>
+            </div>
+          )}
+          <h1 class="hero-title" data-reveal style="--i:1">
+            {title}
+            {accent && <span class="hero-accent">{accent}</span>}
+          </h1>
+          {lede && <p class="hero-lead" data-reveal style="--i:2">{lede}</p>}
+          <div class="hero-actions" data-reveal style="--i:3">
+            <slot name="actions" />
+          </div>
+          <slot />
+        </div>
+
+        <div class="hero-media">
+          <slot name="media" />
+        </div>
+      </div>
+    )}
+  </div>
+</section>

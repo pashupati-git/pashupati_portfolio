@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Figure from '../components/Figure.astro';
+import Section from '../components/Section.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PlayTable from '../components/PlayTable.astro';
+import { projects } from '../data/profile';
+
+const title = 'Work';
+const description =
+  'Production mobile applications, Flutter architectures, and machine learning tools built and contributed to by Pashupati Chaudhary.';
+---
+
+<Base title={title} description={description}>
+  <Hero
+    small
+    eyebrow="Portfolio & Case Studies"
+    title="Mobile Engineering Work."
+    accent="Production Flutter apps & store listings."
+    lede="A curated collection of mobile applications, enterprise client projects, and software architectures. Built with Riverpod, Clean Architecture, offline-first storage, and real-time backend integrations."
+  >
+    <Fragment slot="actions">
+      <a class="btn" href="#play-listings">Store Listings</a>
+      <a class="btn btn-secondary" href="/cv/">Read CV</a>
+    </Fragment>
+  </Hero>
+
+  <Figure value={`${projects.length} Apps`}>
+    developed and contributed to across Android, iOS, Android TV, and the web. From ISP utility suites past 110,000 installs to on-device CNN plant diagnostic engines and local community marketplaces.
+  </Figure>
+
+  <!-- Interactive Filter Tabs -->
+  <Section id="all-projects" tag="Filter" heading="All Applications">
+    <div slot="header-actions">
+      <div class="app-selector-pills" id="project-filters" style="margin: 0;">
+        <button class="app-pill active" type="button" data-filter="all">All ({projects.length})</button>
+        <button class="app-pill" type="button" data-filter="Flutter / Mobile">Flutter / Mobile</button>
+        <button class="app-pill" type="button" data-filter="ML & AI">ML & AI</button>
+        <button class="app-pill" type="button" data-filter="Fullstack / Web">Fullstack / Web</button>
+      </div>
+    </div>
+
+    <div class="projects-grid" id="projects-container">
+      {projects.map((project, index) => (
+        <div class="project-item" data-category={project.category}>
+          <ProjectCard project={project} index={index} />
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Google Play Store Listings Section -->
+  <Section id="play-listings" tag="Live Deployments" heading="On Google Play Store" tone="soft" description="Public store listings with verified install brackets and production releases.">
+    <PlayTable />
+    <p style="margin-top: 1.5rem; font-size: 0.88rem; color: var(--text-muted);" data-reveal>
+      Note: Install figures represent publicly visible brackets on the Google Play Store. Proprietary client codebases remain private, while architecture and code samples are available on request.
+    </p>
+  </Section>
+</Base>
+
+<script>
+  function initProjectFilters() {
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('#project-filters .app-pill');
+    const items = document.querySelectorAll<HTMLElement>('.project-item');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+
+        items.forEach((item) => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initProjectFilters);
+  if (document.readyState !== 'loading') {
+    initProjectFilters();
+  } else {
+    document.addEventListener('DOMContentLoaded', initProjectFilters);
+  }
+</script>

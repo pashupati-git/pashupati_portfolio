@@ -1,0 +1,181 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import Entry from '../components/Entry.astro';
+import { site, experience, education, certifications, skills, languages, projects } from '../data/profile';
+
+const title = 'Curriculum Vitae';
+const description =
+  'Curriculum Vitae of Pashupati Chaudhary, Flutter Developer & Computer Engineering Graduate based in Kathmandu, Nepal. Experience, Education, and Skills.';
+
+const cvFilePath = path.join(process.cwd(), 'public', 'pashupati_cv.pdf');
+const hasPdf = fs.existsSync(cvFilePath);
+---
+
+<Base title={title} description={description}>
+  <Hero
+    small
+    eyebrow="Resume & Credentials"
+    title="Curriculum Vitae."
+    accent="Complete academic & professional record."
+    lede="Comprehensive breakdown of mobile engineering experience, technical architecture, verified projects, and university credentials."
+  >
+    <Fragment slot="actions">
+      {hasPdf && (
+        <a class="btn no-print" href="/pashupati_cv.pdf" download="Pashupati_Chaudhary_CV.pdf">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          Download Official PDF
+        </a>
+      )}
+      <button class="btn btn-secondary no-print" type="button" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/>
+        </svg>
+        Print or Save as PDF
+      </button>
+      <a class="btn btn-ghost no-print" href="/work/">
+        Explore Work Showcase ›
+      </a>
+    </Fragment>
+  </Hero>
+
+  <div class="container container-narrow" style="margin-top: 1rem;">
+    <!-- CV Header Card with Photo & Contact Meta -->
+    <div class="card" data-reveal style="--i:1; margin-bottom: 2.5rem;">
+      <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+        <div style="width: 100px; height: 100px; border-radius: 20px; overflow: hidden; border: 2px solid var(--border-glow); flex-shrink: 0;">
+          <img src={site.photo} alt={site.name} style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+        <div style="flex: 1; min-width: 250px;">
+          <h2 style="font-size: 1.8rem; margin-bottom: 0.25rem;">{site.name}</h2>
+          <p style="color: var(--primary); font-family: var(--font-mono); font-weight: 600; font-size: 0.95rem; margin-bottom: 0.75rem;">
+            Flutter Developer | Mobile Application Development
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.88rem; color: var(--text-secondary);">
+            <span>📍 {site.location}</span>
+            <span>📞 <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a></span>
+            <span>✉️ <a href={`mailto:${site.email}`}>{site.email}</a></span>
+            <span>💻 <a href={site.links.github} target="_blank" rel="noopener">pashupati-git</a></span>
+            <span>🔗 <a href={site.links.linkedin} target="_blank" rel="noopener">LinkedIn</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Professional Summary -->
+    <Section id="cv-summary" tag="Profile" heading="Professional Summary">
+      <div class="card" data-reveal style="--i:2">
+        <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary);">
+          Computer Engineering graduate with hands-on experience in Flutter application development. Currently working as a
+          Flutter Intern at MindRisers Institute of Technology, contributing to real-world mobile applications using Clean
+          Architecture, MVVM, and Riverpod state management. Skilled in building scalable, localized, and high-performance
+          applications based on Figma UI designs, integrating REST APIs, Firebase services, and Hive for offline storage.
+          Passionate about writing clean, maintainable code and continuously learning modern mobile development practices.
+        </p>
+      </div>
+    </Section>
+
+    <!-- Professional Experience -->
+    <Section id="cv-experience" tag="History" heading="Experience">
+      <div class="timeline-list">
+        {experience.map((job, idx) => (
+          <Entry title={job.role} meta={job.period} index={idx}>
+            <Fragment slot="org">
+              <a href={job.companyUrl} target="_blank" rel="noopener">{job.company}</a> — {job.place}
+            </Fragment>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.75rem;">
+              {job.bullets.map((bullet) => (
+                <li style="position: relative; padding-left: 1.25rem;">
+                  <span style="position: absolute; left: 0; color: var(--primary);">▸</span>
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+          </Entry>
+        ))}
+      </div>
+    </Section>
+
+    <!-- Formal Education -->
+    <Section id="cv-education" tag="Degrees" heading="Education" tone="soft">
+      <div class="timeline-list">
+        {education.map((edu, idx) => (
+          <Entry title={edu.degree} meta={edu.period} index={idx}>
+            <Fragment slot="org">{edu.institution}, {edu.location}</Fragment>
+            <p>{edu.details}</p>
+          </Entry>
+        ))}
+      </div>
+    </Section>
+
+    <!-- Key Projects Highlighted in CV -->
+    <Section id="cv-projects" tag="Highlights" heading="Key Projects from CV">
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        {projects.slice(0, 5).map((project, idx) => (
+          <div class="card" data-reveal style={`--i:${Math.min(idx, 4)}`}>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <h3 style="font-size: 1.25rem;">{project.name} — <span style="font-size: 1rem; color: var(--text-secondary); font-weight: normal;">{project.headline}</span></h3>
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--primary);">{project.period}</span>
+            </div>
+            <div class="project-stack" style="margin: 0.5rem 0 1rem;">
+              {project.stack.map((t) => <span class="tech-tag">{t}</span>)}
+            </div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.4rem;">
+              {project.bullets.map((b) => (
+                <li style="position: relative; padding-left: 1.25rem; font-size: 0.92rem; color: var(--text-secondary);">
+                  <span style="position: absolute; left: 0; color: var(--primary);">▸</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </Section>
+
+    <!-- Training & Certifications -->
+    <Section id="cv-training" tag="Continuous Learning" heading="Training & Certifications" tone="soft">
+      <div class="timeline-list">
+        {certifications.map((item, idx) => (
+          <Entry title={item.title} meta={item.period} index={idx}>
+            <Fragment slot="org">{item.issuer}</Fragment>
+            <p>{item.details}</p>
+          </Entry>
+        ))}
+      </div>
+    </Section>
+
+    <!-- Technical Skills Breakdown -->
+    <Section id="cv-skills" tag="Competencies" heading="Technical Skills">
+      <div class="skills-group-grid">
+        {skills.map((group, idx) => (
+          <div class="card" data-reveal style={`--i:${idx}`}>
+            <h3 style="font-size: 1.15rem; color: var(--primary); margin-bottom: 0.5rem;">{group.category}</h3>
+            <div class="skill-pill-list">
+              {group.items.map((skill) => (
+                <span class="skill-pill">{skill}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+
+    <!-- Spoken Languages -->
+    <Section id="cv-languages" tag="Languages" heading="Languages" tone="soft">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;" data-reveal>
+        {languages.map((lang) => (
+          <div class="card" style="padding: 1.25rem; text-align: center;">
+            <strong>{lang.name}</strong>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--primary); margin-top: 0.25rem;">{lang.level}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  </div>
+</Base>

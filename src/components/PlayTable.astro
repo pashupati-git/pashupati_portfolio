@@ -1,0 +1,45 @@
+---
+import { playListings } from '../data/profile';
+---
+
+<div class="card" style="padding: 0; overflow: hidden;" data-reveal style="--i:1">
+  <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+      <thead>
+        <tr style="border-bottom: 1px solid var(--border-medium); background: var(--bg-surface);">
+          <th style="padding: 1rem 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);">Application</th>
+          <th style="padding: 1rem 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);">Installs</th>
+          <th style="padding: 1rem 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);">Description</th>
+          <th style="padding: 1rem 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); text-align: right;">Listing</th>
+        </tr>
+      </thead>
+      <tbody>
+        {playListings.map((item) => (
+          <tr style="border-bottom: 1px solid var(--border-subtle); transition: background var(--transition-fast);" class="table-row">
+            <td style="padding: 1.1rem 1.5rem; display: flex; align-items: center; gap: 0.85rem;">
+              <img src={item.icon} alt={item.name} width="36" height="36" style="border-radius: 8px;" loading="lazy" />
+              <strong style="color: var(--text-main);">{item.name}</strong>
+            </td>
+            <td style="padding: 1.1rem 1.5rem; font-family: var(--font-mono); color: var(--primary); font-weight: 600;">
+              {item.installs}
+            </td>
+            <td style="padding: 1.1rem 1.5rem; color: var(--text-secondary);">
+              {item.note}
+            </td>
+            <td style="padding: 1.1rem 1.5rem; text-align: right;">
+              <a href={item.url} target="_blank" rel="noopener" class="link-arrow" style="font-size: 0.88rem;">
+                Google Play <span class="arrow">↗</span>
+              </a>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .table-row:hover {
+    background: var(--border-subtle);
+  }
+</style>

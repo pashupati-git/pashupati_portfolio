@@ -1,0 +1,58 @@
+---
+import type { Project } from '../data/profile';
+
+interface Props {
+  project: Project;
+  index?: number;
+}
+
+const { project, index = 0 } = Astro.props;
+---
+
+<div class="card project-card" data-reveal style={`--i:${Math.min(index, 4)}`}>
+  <div>
+    <div class="project-top">
+      <div class="project-icon-box" style={project.color ? `border-color: ${project.color}40; box-shadow: 0 0 15px ${project.color}20` : ''}>
+        {project.icon ? (
+          <img src={project.icon} alt={project.name} width="52" height="52" loading="lazy" />
+        ) : (
+          <div style={`width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; color: #fff; background: ${project.color || 'var(--accent-gradient)'}`}>
+            {project.name.slice(0, 2).toUpperCase()}
+          </div>
+        )}
+      </div>
+      <div style="display: flex; gap: 0.5rem; align-items: center;">
+        {project.installs && <span class="project-badge" style="color: var(--primary);">{project.installs}</span>}
+        <span class="project-badge">{project.category}</span>
+      </div>
+    </div>
+
+    <h3 class="project-title">{project.name}</h3>
+    <p class="project-headline">{project.headline}</p>
+
+    <div class="project-stack">
+      {project.stack.map((tech) => (
+        <span class="tech-tag">{tech}</span>
+      ))}
+    </div>
+
+    <ul class="project-bullets">
+      {project.bullets.map((bullet) => (
+        <li>{bullet}</li>
+      ))}
+    </ul>
+  </div>
+
+  <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between;">
+    <span style="font-size: 0.82rem; font-family: var(--font-mono); color: var(--text-muted);">{project.period}</span>
+    {project.link ? (
+      <a href={project.link.url} target="_blank" rel="noopener" class="link-arrow" style="font-size: 0.88rem;">
+        {project.link.label} <span class="arrow">↗</span>
+      </a>
+    ) : (
+      <span style="font-size: 0.82rem; color: var(--text-muted); font-family: var(--font-mono);">
+        {project.status || 'Private Client / Academic'}
+      </span>
+    )}
+  </div>
+</div>

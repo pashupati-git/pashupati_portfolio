@@ -1,0 +1,49 @@
+---
+import { site, nav } from '../data/profile';
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="/" class="brand-link" style="margin-bottom: 1rem;">
+          <span class="brand-badge">PC</span>
+          <span>{site.name}</span>
+        </a>
+        <p style="margin-bottom: 1.25rem;">
+          Flutter Developer & Mobile Application Engineer based in {site.location}. Focused on clean architecture,
+          responsive mobile interfaces, and offline-first applications.
+        </p>
+        <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--primary);">
+          <span class="pulse-dot" style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--primary);"></span>
+          <span>Available for full-time & contract mobile opportunities</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          {nav.map((item) => (
+            <li><a href={item.href}>{item.label}</a></li>
+          ))}
+          <li><a href={site.cvFile} download="Pashupati_Chaudhary_CV.pdf">Download CV (PDF)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul class="footer-links">
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href={site.whatsapp.url} target="_blank" rel="noopener">WhatsApp ({site.phone})</a></li>
+          <li><a href={site.links.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href={site.links.github} target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© {new Date().getFullYear()} {site.name}. All rights reserved.</div>
+      <div>Designed with 3D WebGL & Built with Astro</div>
+    </div>
+  </div>
+</footer>
