@@ -512,13 +512,13 @@ export class Phone3DShowcase {
     this.screenMesh.position.z = phoneDepth / 2 + 0.045;
     this.phoneGroup.add(this.screenMesh);
 
-    // Camera Punchhole / Dynamic Island
-    const islandGeo = new THREE.CapsuleGeometry(0.08, 0.26, 8, 16);
-    const islandMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
-    const island = new THREE.Mesh(islandGeo, islandMat);
-    island.rotation.z = Math.PI / 2;
-    island.position.set(0, phoneHeight / 2 - 0.26, phoneDepth / 2 + 0.05);
-    this.phoneGroup.add(island);
+    // Tiny camera pinhole integrated into top bezel rim (does not obscure screen content)
+    const pinholeGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.03, 16);
+    pinholeGeo.rotateX(Math.PI / 2);
+    const pinholeMat = new THREE.MeshBasicMaterial({ color: 0x020408 });
+    const pinhole = new THREE.Mesh(pinholeGeo, pinholeMat);
+    pinhole.position.set(0, phoneHeight / 2 - 0.07, phoneDepth / 2 + 0.046);
+    this.phoneGroup.add(pinhole);
 
     // Back Camera Bump
     const bumpGeo = new THREE.BoxGeometry(1.2, 1.4, 0.12);

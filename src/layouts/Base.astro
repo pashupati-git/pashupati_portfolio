@@ -3,6 +3,7 @@ import { ClientRouter } from 'astro:transitions';
 import { site } from '../data/profile';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Lightbox from '../components/Lightbox.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -102,11 +103,13 @@ const personSchema = {
       <slot />
     </main>
     <Footer />
+    <Lightbox />
 
     <script>
       import '../scripts/reveal.ts';
       import '../scripts/theme.ts';
       import '../scripts/glass.ts';
+      import '../scripts/lightbox.ts';
     </script>
   </body>
 </html>
