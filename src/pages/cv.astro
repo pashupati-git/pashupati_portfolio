@@ -5,7 +5,7 @@ import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import Entry from '../components/Entry.astro';
-import { site, experience, education, certifications, skills, languages, projects } from '../data/profile';
+import { site, experience, education, certifications, skills, languages } from '../data/profile';
 
 const title = 'Curriculum Vitae · Flutter Developer in Nepal';
 const description =
@@ -122,30 +122,6 @@ const hasPdf = fs.existsSync(cvFilePath);
       </div>
     </Section>
 
-    <!-- Key Projects Highlighted in CV -->
-    <Section id="cv-projects" tag="Highlights" heading="Key Projects from CV">
-      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-        {projects.map((project, idx) => (
-          <div class="card" data-reveal style={`--i:${Math.min(idx, 4)}`}>
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <h3 style="font-size: 1.25rem;">{project.name} — <span style="font-size: 1rem; color: var(--text-secondary); font-weight: normal;">{project.headline}</span></h3>
-              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--primary);">{project.period}</span>
-            </div>
-            <div class="project-stack" style="margin: 0.5rem 0 1rem;">
-              {project.stack.map((t) => <span class="tech-tag">{t}</span>)}
-            </div>
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.4rem;">
-              {project.bullets.map((b) => (
-                <li style="position: relative; padding-left: 1.25rem; font-size: 0.92rem; color: var(--text-secondary);">
-                  <span style="position: absolute; left: 0; color: var(--primary);">▸</span>
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </Section>
 
     <!-- Training & Certifications -->
     <Section id="cv-training" tag="Continuous Learning" heading="Training & Certifications" tone="soft">

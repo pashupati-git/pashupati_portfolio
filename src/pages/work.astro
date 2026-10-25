@@ -32,8 +32,8 @@ const description =
 
   <!-- Interactive Filter Tabs -->
   <Section id="all-projects" tag="Portfolio" heading="All Applications">
-    <div slot="header-actions">
-      <div class="app-selector-pills" id="project-filters" style="margin: 0;">
+    <div slot="header-actions" style="max-width: 100%; width: 100%; min-width: 0;">
+      <div class="app-selector-pills" id="project-filters" style="margin: 0; max-width: 100%; width: 100%; overflow-x: auto;">
         <button class="app-pill active" type="button" data-filter="all">All ({projects.length})</button>
         <button class="app-pill" type="button" data-filter="Flutter / Mobile">Flutter / Mobile ({projects.filter((p) => p.category === 'Flutter / Mobile').length})</button>
         <button class="app-pill" type="button" data-filter="Fullstack / Web">Fullstack / Web ({projects.filter((p) => p.category === 'Fullstack / Web').length})</button>
@@ -43,7 +43,7 @@ const description =
 
     <div class="projects-grid" id="projects-container">
       {projects.map((project, index) => (
-        <div class="project-item" data-category={project.category}>
+        <div class="project-item" data-category={project.category} style="width: 100%; max-width: 100%; min-width: 0;">
           <ProjectCard project={project} index={index} />
         </div>
       ))}

@@ -638,8 +638,17 @@ main {
 /* Project Row & Cards */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
   gap: 1.5rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.projects-grid > * {
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .project-card {
@@ -1059,21 +1068,45 @@ main {
   }
 
   .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1.15rem;
+    width: 100%;
+    min-width: 0;
   }
 
   .services-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .section-head > * {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .container {
-    padding: 0 1.15rem;
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .section {
-    padding: 3rem 0;
+    padding: 2.75rem 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .section-head {
