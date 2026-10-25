@@ -222,6 +222,27 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: 'sheguidesme',
+    name: 'SheGuidesMe',
+    headline: 'Travel guided by locals · Verified guide discovery & in-app communication',
+    context: 'Travel & Local Marketplace App · Google Play',
+    category: 'Flutter / Mobile',
+    stack: ['Flutter', 'Riverpod', 'Firebase', 'REST APIs', 'In-App Chat', 'Google Maps API'],
+    period: '2025 to 2026',
+    featured: true,
+    color: '#D946EF',
+    icon: '/icons/sheguidesme.png',
+    previewScreen: '/screens/sheguidesme.png',
+    installs: 'Google Play',
+    link: { label: 'SheGuidesMe on Google Play', url: 'https://play.google.com/store/apps/details?id=com.sheguidesme.mobile' },
+    bullets: [
+      'Contributed to cross-platform Flutter mobile application connecting global travelers with verified local tour guides and specialized service providers.',
+      'Engineered in-app communication modules including real-time chat, push notifications, and direct contact coordination without exposing private credentials.',
+      'Implemented location-based destination discovery, verified profile badges, interactive reviews/ratings system, and secure booking flow.',
+      'Integrated RESTful APIs, state management with Riverpod, and responsive UI components adapted for seamless navigation across Android and iOS devices.',
+    ],
+  },
+  {
     slug: 'leafcare',
     name: 'LeafCare',
     headline: 'Plant disease detection using CNN (TFLite) & agricultural marketplace app',
@@ -313,6 +334,7 @@ export const playListings = [
   { name: 'Classic Engine', installs: '10,000+', url: 'https://play.google.com/store/apps/details?id=com.classic.np.engine', note: 'Field technician staff app, Flutter', icon: '/icons/classic-engine.png' },
   { name: 'NNET', installs: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.nnet.np.app', note: 'ISP customer support & optical diagnostics, solely built & deployed', icon: '/icons/nnet.png' },
   { name: 'Dealer Partner', installs: '1,000+', url: 'https://play.google.com/store/apps/details?id=com.classic.partner.np.app', note: 'Referral and commission network app, Flutter', icon: '/icons/dealer-partner.png' },
+  { name: 'SheGuidesMe', installs: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.sheguidesme.mobile', note: 'Travel guided by locals, verified guide marketplace with in-app chat & booking', icon: '/icons/sheguidesme.png' },
   { name: 'Totto', installs: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.nepalibazaar.totto', note: 'Buy & sell community marketplace, Flutter & Django', icon: '/icons/totto.png' },
 ];
 

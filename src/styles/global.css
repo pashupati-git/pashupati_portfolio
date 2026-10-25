@@ -105,6 +105,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -113,6 +115,7 @@ body {
   flex-direction: column;
   position: relative;
   overflow-x: hidden;
+  max-width: 100%;
   transition: background-color var(--transition-smooth), color var(--transition-smooth);
 }
 
@@ -480,22 +483,43 @@ main {
   margin-bottom: 2.5rem;
 }
 
+.hero-media {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.hero-text {
+  width: 100%;
+  max-width: 100%;
+}
+
 /* 3D Phone Container */
 .phone-showcase-container {
   position: relative;
   width: 100%;
+  max-width: 100%;
   height: 520px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .phone-canvas-wrap {
   width: 100%;
+  max-width: 100%;
   height: 440px;
   position: relative;
   cursor: grab;
+  overflow: hidden;
+}
+
+.phone-canvas-wrap canvas {
+  max-width: 100% !important;
+  display: block;
+  margin: 0 auto;
 }
 
 .phone-canvas-wrap:active {
@@ -914,44 +938,146 @@ main {
   }
 }
 
-@media (max-width: 720px) {
-  .site-header .nav-wrap {
+@media (max-width: 768px) {
+  .site-header {
     height: auto;
-    padding: 0.75rem 0;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    min-height: 3.85rem;
   }
 
-  .nav-links {
-    order: 3;
+  .site-header .nav-wrap {
+    height: 3.85rem;
+    padding: 0;
+  }
+
+  .hero-section {
+    padding: 2.25rem 0 1.75rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: 100%;
+    gap: 2rem;
+    text-align: center;
     width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--border-subtle);
+    max-width: 100%;
+    overflow: hidden;
   }
 
-  .nav-link {
-    padding: 0.35rem 0.65rem;
-    font-size: 0.85rem;
-  }
-
-  .stats-banner {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .btn {
+  .hero-text {
     width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    padding: 0.32rem 0.8rem;
+    margin-bottom: 1rem;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 7.5vw, 3.2rem);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-lead {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
   }
 
   .hero-actions {
     flex-direction: column;
     width: 100%;
+    gap: 0.65rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .phone-showcase-container {
+    height: 380px;
+  }
+
+  .phone-canvas-wrap {
+    height: 310px;
+  }
+
+  .app-selector-pills {
+    display: flex;
+    overflow-x: auto;
+    max-width: 100%;
+    gap: 0.4rem;
+    padding: 0.35rem 0.2rem 0.5rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+
+  .app-selector-pills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .app-selector-pills .app-pill {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 0.76rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .stats-banner {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding: 1.25rem 0.75rem;
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .stat-item {
+    align-items: center;
+  }
+
+  .stat-num {
+    font-size: 1.75rem;
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    line-height: 1.35;
+    margin-top: 0.25rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .container {
+    padding: 0 1.15rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .section-head {
+    margin-bottom: 1.75rem;
   }
 }
 

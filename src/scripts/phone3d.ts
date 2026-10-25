@@ -339,6 +339,60 @@ export const APPS: AppScreen[] = [
       });
     },
   },
+  {
+    id: 'sheguidesme',
+    name: 'SheGuidesMe',
+    tagline: 'Travel Guided by Locals',
+    themeColor: '#D946EF',
+    screenImage: '/screens/sheguidesme.png',
+    renderScreen: (ctx, w, h) => {
+      ctx.fillStyle = '#1A0B2E';
+      ctx.fillRect(0, 0, w, h);
+
+      // Status Bar
+      ctx.fillStyle = '#E9D5FF';
+      ctx.font = 'bold 30px sans-serif';
+      ctx.fillText('9:41', 48, 64);
+      ctx.fillText('5G  100%', w - 180, 64);
+
+      // Header
+      ctx.fillStyle = '#2D124D';
+      ctx.roundRect(32, 100, w - 64, 88, 20);
+      ctx.fill();
+
+      ctx.fillStyle = '#F472B6';
+      ctx.font = '900 36px sans-serif';
+      ctx.fillText('SheGuidesMe', 64, 158);
+
+      // Hero banner
+      const bannerGrad = ctx.createLinearGradient(32, 210, w - 32, 450);
+      bannerGrad.addColorStop(0, '#C026D3');
+      bannerGrad.addColorStop(1, '#7C3AED');
+      ctx.fillStyle = bannerGrad;
+      ctx.roundRect(32, 210, w - 64, 240, 24);
+      ctx.fill();
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 32px sans-serif';
+      ctx.fillText('Travel Guided by Locals', 60, 280);
+      ctx.font = '22px sans-serif';
+      ctx.fillStyle = '#FDF4FF';
+      ctx.fillText('Connecting travelers with verified guides', 60, 330);
+      ctx.fillText('Authentic cultural & location experiences', 60, 370);
+
+      // Action Card
+      ctx.fillStyle = '#2D124D';
+      ctx.roundRect(32, 480, w - 64, 160, 20);
+      ctx.fill();
+
+      ctx.fillStyle = '#F472B6';
+      ctx.font = 'bold 26px sans-serif';
+      ctx.fillText('Explore Verified Guides', 64, 540);
+      ctx.fillStyle = '#CBD5E1';
+      ctx.font = '22px sans-serif';
+      ctx.fillText('In-App Chat · Secure Booking · Reviews', 64, 590);
+    },
+  },
 ];
 
 export class Phone3DShowcase {

@@ -2,32 +2,33 @@
 import { playListings } from '../data/profile';
 ---
 
-<div class="card" style="padding: 0; overflow: hidden;" data-reveal style="--i:1">
-  <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+<div class="card play-table-card" data-reveal style="--i:1">
+  <!-- Desktop / Tablet Table View -->
+  <div class="play-table-desktop">
+    <table class="play-table">
       <thead>
-        <tr style="border-bottom: 1px solid var(--border-medium); background: var(--bg-surface);">
-          <th style="padding: 1rem 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);">Application</th>
-          <th style="padding: 1rem 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);">Installs</th>
-          <th style="padding: 1rem 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);">Description</th>
-          <th style="padding: 1rem 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); text-align: right;">Listing</th>
+        <tr>
+          <th>Application</th>
+          <th>Installs</th>
+          <th>Description</th>
+          <th style="text-align: right;">Listing</th>
         </tr>
       </thead>
       <tbody>
         {playListings.map((item) => (
-          <tr style="border-bottom: 1px solid var(--border-subtle); transition: background var(--transition-fast);" class="table-row">
-            <td style="padding: 1.1rem 1.5rem; display: flex; align-items: center; gap: 0.85rem;">
-              <img src={item.icon} alt={item.name} width="36" height="36" style="border-radius: 8px;" loading="lazy" />
-              <strong style="color: var(--text-main);">{item.name}</strong>
+          <tr class="table-row">
+            <td class="cell-app">
+              <img src={item.icon} alt={item.name} width="36" height="36" class="app-icon-img" loading="lazy" />
+              <strong>{item.name}</strong>
             </td>
-            <td style="padding: 1.1rem 1.5rem; font-family: var(--font-mono); color: var(--primary); font-weight: 600;">
-              {item.installs}
+            <td class="cell-installs">
+              <span class="installs-pill">{item.installs}</span>
             </td>
-            <td style="padding: 1.1rem 1.5rem; color: var(--text-secondary);">
+            <td class="cell-desc">
               {item.note}
             </td>
-            <td style="padding: 1.1rem 1.5rem; text-align: right;">
-              <a href={item.url} target="_blank" rel="noopener" class="link-arrow" style="font-size: 0.88rem;">
+            <td class="cell-action">
+              <a href={item.url} target="_blank" rel="noopener" class="link-arrow">
                 Google Play <span class="arrow">↗</span>
               </a>
             </td>
@@ -36,10 +37,172 @@ import { playListings } from '../data/profile';
       </tbody>
     </table>
   </div>
+
+  <!-- Mobile Card List View -->
+  <div class="play-cards-mobile">
+    {playListings.map((item) => (
+      <div class="play-card-item">
+        <div class="play-card-header">
+          <img src={item.icon} alt={item.name} width="42" height="42" class="app-icon-img" loading="lazy" />
+          <div class="play-card-title-group">
+            <strong class="play-card-title">{item.name}</strong>
+            <span class="installs-pill">{item.installs} installs</span>
+          </div>
+        </div>
+        <p class="play-card-note">{item.note}</p>
+        <div class="play-card-action">
+          <a href={item.url} target="_blank" rel="noopener" class="btn btn-secondary play-card-btn">
+            <span>Open on Google Play</span>
+            <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
 </div>
 
 <style>
+  .play-table-card {
+    padding: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
+
+  .play-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+
+  .play-table thead tr {
+    border-bottom: 1px solid var(--border-medium);
+    background: var(--bg-surface);
+  }
+
+  .play-table th {
+    padding: 1rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .table-row {
+    border-bottom: 1px solid var(--border-subtle);
+    transition: background var(--transition-fast);
+  }
+
   .table-row:hover {
     background: var(--border-subtle);
+  }
+
+  .cell-app {
+    padding: 1.1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: var(--text-main);
+  }
+
+  .app-icon-img {
+    border-radius: 10px;
+    border: 1px solid var(--border-medium);
+    background: var(--bg-surface);
+    flex-shrink: 0;
+  }
+
+  .cell-installs {
+    padding: 1.1rem 1.5rem;
+    white-space: nowrap;
+  }
+
+  .installs-pill {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(0, 229, 255, 0.12);
+    color: var(--primary);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+  }
+
+  .cell-desc {
+    padding: 1.1rem 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+  }
+
+  .cell-action {
+    padding: 1.1rem 1.5rem;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* Mobile vs Desktop */
+  .play-cards-mobile {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .play-table-desktop {
+      display: none;
+    }
+
+    .play-cards-mobile {
+      display: flex;
+      flex-direction: column;
+      divide-y: 1px solid var(--border-subtle);
+    }
+
+    .play-card-item {
+      padding: 1.25rem 1.15rem;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .play-card-item:last-child {
+      border-bottom: none;
+    }
+
+    .play-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .play-card-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .play-card-title {
+      font-size: 1.05rem;
+      color: var(--text-main);
+    }
+
+    .play-card-note {
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .play-card-action {
+      margin-top: 0.25rem;
+    }
+
+    .play-card-btn {
+      width: 100%;
+      justify-content: center;
+      font-size: 0.85rem;
+      padding: 0.6rem 1rem;
+    }
   }
 </style>
