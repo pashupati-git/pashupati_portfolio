@@ -3,15 +3,29 @@
 
 export const site = {
   name: 'Pashupati Chaudhary',
-  title: 'Pashupati Chaudhary · Flutter Developer & Mobile Application Engineer',
-  tagline: 'Flutter & Kotlin Mobile Developer crafting high-performance Android & iOS applications.',
+  title: 'Pashupati Chaudhary | Flutter Developer in Nepal · Mobile Application Engineer',
+  tagline: 'Flutter Developer & Mobile Application Engineer in Nepal crafting high-performance Android & iOS apps.',
   description:
-    'Pashupati Chaudhary is a Computer Engineering graduate and Mobile Application Developer at Classic Tech specializing in Flutter, Kotlin native Android, end-to-end testing, and publishing on Google Play & App Store.',
+    'Pashupati Chaudhary is a Computer Engineering graduate and Mobile Application Developer based in Kathmandu, Nepal, specializing in Flutter, Kotlin native Android, scalable clean architecture, app testing, and store publishing across Google Play and Apple App Store.',
   url: 'https://pashupatichaudhary.com.np',
   email: 'pashupatic121@gmail.com',
   phone: '+977 9813704884',
   whatsapp: { number: '+977 9813704884', url: 'https://wa.me/9779813704884' },
   location: 'Indrachowk, Kathmandu, Nepal',
+  keywords: [
+    'Flutter Developer in Nepal',
+    'Flutter Developer Nepal',
+    'Application Developers in Nepal Flutter',
+    'Mobile Application Developer Nepal',
+    'Flutter Developer Kathmandu',
+    'Pashupati Chaudhary',
+    'Android Developer Nepal',
+    'Kotlin Developer Nepal',
+    'Hire Flutter Developer Nepal',
+    'Classic Tech Flutter Developer',
+    'iOS Developer Nepal',
+    'Clean Architecture Flutter',
+  ],
   links: {
     linkedin: 'https://linkedin.com/in/pashupati-chaudhary',
     github: 'https://github.com/pashupati-git',

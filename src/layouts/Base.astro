@@ -25,10 +25,41 @@ const personSchema = {
   email: `mailto:${site.email}`,
   telephone: site.phone,
   jobTitle: 'Flutter Developer & Mobile Application Engineer',
+  description: site.description,
+  nationality: 'Nepali',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Kathmandu',
+    addressRegion: 'Bagmati Province',
     addressCountry: 'NP',
+  },
+  knowsAbout: [
+    'Flutter',
+    'Dart',
+    'Mobile Application Development',
+    'Android Development',
+    'Kotlin',
+    'iOS Development',
+    'Riverpod',
+    'Bloc',
+    'Clean Architecture',
+    'REST APIs',
+    'Firebase',
+    'ExoPlayer',
+    'Google Play Store Publishing',
+    'Apple App Store Publishing',
+    'Mobile App QA & Testing',
+    'Codemagic CI/CD',
+  ],
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: 'Flutter Developer',
+    description: 'Mobile application developer engineering Android and iOS applications with Flutter and native Kotlin in Nepal.',
+    occupationLocation: {
+      '@type': 'Country',
+      name: 'Nepal',
+    },
+    skills: 'Flutter, Dart, Kotlin, Android, iOS, Clean Architecture, Riverpod, Mobile App Publishing',
   },
   alumniOf: [
     { '@type': 'CollegeOrUniversity', name: 'Nepal Engineering College' },
@@ -51,11 +82,19 @@ const personSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={site.keywords.join(', ')} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="author" content={site.name} />
     <meta name="theme-color" content="#08090d" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Geo / Local SEO Metadata for Nepal -->
+    <meta name="geo.region" content="NP-BA" />
+    <meta name="geo.placename" content="Kathmandu, Nepal" />
+    <meta name="geo.position" content="27.7089;85.3123" />
+    <meta name="ICBM" content="27.7089, 85.3123" />
 
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website" />
