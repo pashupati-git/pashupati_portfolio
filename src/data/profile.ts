@@ -64,7 +64,7 @@ export const experience: Experience[] = [
     companyUrl: 'https://classic.com.np',
     type: 'Full-time',
     place: 'New Baneshwor, Kathmandu, Nepal',
-    period: 'Mar 2026 to Present',
+    period: 'Mar 2026 to Present (8+ Months)',
     bullets: [
       'Serving as Mobile Application Developer architecting, scaling, and maintaining mission-critical Flutter & Kotlin applications for Nepal’s premier broadband ISP.',
       'Leading development across core production applications: Caro TV Nepal (Live IPTV & streaming), Classic Tech Customer App (100k+ downloads), Classic Engine field operations, and Dealer Partner.',
@@ -80,7 +80,7 @@ export const experience: Experience[] = [
     companyUrl: 'https://mindrisers.com.np',
     type: 'Internship',
     place: 'Kathmandu, Bagmati, Nepal',
-    period: 'Sep 2025 to Feb 2026',
+    period: 'Sep 2025 to Feb 2026 (6 Months)',
     bullets: [
       'Developed cross-platform mobile applications from Figma UI prototypes adhering to Clean Architecture and MVVM design patterns.',
       'Engineered reactive state management solutions using Riverpod, isolating UI widgets from domain and data layers.',
@@ -462,14 +462,14 @@ export const education = [
     institutionUrl: 'https://nec.edu.np',
     location: 'Changunarayan, Bhaktapur, Nepal',
     period: 'July 2021 to Aug 2025',
-    details: 'Affiliated with Pokhara University. Core curriculum in Advanced Computer Architecture, Operating Systems, Computer Networks, Software Engineering, Database Management Systems, and Machine Learning.',
+    details: 'Affiliated with Pokhara University. Core curriculum in Advanced Computer Architecture, Operating Systems, Computer Networks, Software Engineering, Database Management Systems, and Machine Learning. Started Flutter development in 4th year; developed LeafCare capstone, completing 1 year of intensive self-learning and project engineering.',
   },
   {
     degree: 'National Examination Board (NEB) · +2 Science',
     institution: 'White House Secondary School',
     location: 'Khumaltar, Lalitpur, Nepal',
     period: 'Apr 2018 to Apr 2020',
-    details: 'Major in Physical Science (Physics, Chemistry, Mathematics, Computer Science).',
+    details: 'Major in Physical Science (Physics, Chemistry, Mathematics, Computer Science). Built strong analytical, algorithmic, and mathematical foundation.',
   },
   {
     degree: 'Secondary Education Examination (SEE)',
@@ -482,10 +482,12 @@ export const education = [
 
 export const certifications = [
   {
-    title: 'Flutter Training & Apprenticeship',
+    title: 'Professional Flutter & Dart Apprenticeship Certification',
     issuer: 'Mind Risers Consortium',
     period: '2025',
-    details: 'Intensive professional training in Dart, Flutter, Firebase, Riverpod state management, Hive local storage, Clean Architecture, and internationalization.',
+    credentialId: 'MR-81031-FL',
+    credentialUrl: 'https://www.mindrisers.com.np/certificate/validate/MR-81031-FL',
+    details: 'Completed 4 months of intensive physical, classroom-based engineering training and project development covering Dart language internals, Flutter widget architecture, Clean Architecture, Riverpod state management, Hive local storage, Firebase, and production deployment. Credential ID: MR-81031-FL.',
   },
 ];
 

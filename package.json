@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev --port 4321",
     "build": "astro build",
+    "build:cv": "node scripts/build_cv.mjs",
     "preview": "astro preview"
   },
   "dependencies": {

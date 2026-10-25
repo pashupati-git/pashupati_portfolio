@@ -152,7 +152,16 @@ const hasPdf = fs.existsSync(cvFilePath);
       <div class="timeline-list">
         {certifications.map((item, idx) => (
           <Entry title={item.title} meta={item.period} index={idx}>
-            <Fragment slot="org">{item.issuer}</Fragment>
+            <Fragment slot="org">
+              <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+                <span>{item.issuer}</span>
+                {item.credentialUrl && (
+                  <a href={item.credentialUrl} target="_blank" rel="noopener" style="font-size: 0.82rem; font-family: var(--font-mono); color: var(--primary); text-decoration: underline;">
+                    Verify Credential ({item.credentialId}) ↗
+                  </a>
+                )}
+              </div>
+            </Fragment>
             <p>{item.details}</p>
           </Entry>
         ))}
