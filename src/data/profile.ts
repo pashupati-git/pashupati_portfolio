@@ -64,7 +64,7 @@ export const experience: Experience[] = [
     companyUrl: 'https://classic.com.np',
     type: 'Full-time',
     place: 'New Baneshwor, Kathmandu, Nepal',
-    period: 'Mar 2026 to Present (8+ Months)',
+    period: 'Mar 2026 to Present (Currently working)',
     bullets: [
       'Serving as Mobile Application Developer architecting, scaling, and maintaining mission-critical Flutter & Kotlin applications for Nepal’s premier broadband ISP.',
       'Leading development across core production applications: Caro TV Nepal (Live IPTV & streaming), Classic Tech Customer App (100k+ downloads), Classic Engine field operations, and Dealer Partner.',
